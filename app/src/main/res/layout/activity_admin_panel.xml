@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#fff"
+    android:padding="40dp"
+    tools:context=".PanelActivity.AdminPanelActivity">
+
+   <TextView
+       android:textSize="21dp"
+       android:text="@string/admin_dashboard"
+       android:layout_margin="10dp"
+       android:padding="5dp"
+       android:textAlignment="center"
+       android:textColor="#000"
+       android:textStyle="bold"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+    <Button
+        android:textColor="#000"
+    android:textSize="19dp"
+
+    android:id="@+id/employeeButton"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+        android:layout_margin="10dp"
+    android:text="employee management"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+    />
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/projectButton"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Projects"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/taskButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:text="task management"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/attendanceButton"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="attendance"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+
+
+
+</LinearLayout>

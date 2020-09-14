@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:padding="20dp"
+    tools:context=".ActionViewActivity.AdminToEmployee">
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/firstRelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewShow"
+                android:textSize="24sp"
+                android:text="Employee"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/employeeAddButton"
+                android:src="@drawable/ic_plus"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+
+
+        </RelativeLayout>
+        <com.google.android.material.card.MaterialCardView
+
+            android:id="@+id/searchCard"
+            android:layout_width="match_parent"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_height="35dp"
+            app:cardCornerRadius="5dp"
+            android:layout_below="@+id/firstRelativeLayout"
+            android:layout_marginTop="23dp"
+            android:padding="5dp"
+            android:background="#fff">
+            <androidx.appcompat.widget.SearchView
+
+                android:id="@+id/searchViewEmployee"
+                android:layout_width="match_parent"
+                android:focusable="false"
+
+                android:layout_height="match_parent"
+                app:queryHint="Search Your Notes"
+                app:iconifiedByDefault="false"
+                android:layoutDirection="rtl"
+                />
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEmployee"
+            android:layout_below="@id/searchCard"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="40dp"
+    android:background="#fff"
+    tools:context=".MainActivity">
+    <com.google.android.material.textview.MaterialTextView
+        android:textSize="21dp"
+        android:text="@string/employee_dashboard"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/taskEmployeeButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:text="tasks"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+
+        android:id="@+id/approvalEmployeeButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:text="approval"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/dueEmployeeButton"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="due"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+    <Button
+        android:textColor="#000"
+        android:textSize="19dp"
+        android:id="@+id/checkInOutEmployeeButton"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="check in/out"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+        />
+
+
+
+</LinearLayout>
