@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
@@ -12,6 +14,8 @@ import com.example.androidshaper.companyapplication.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -19,14 +23,18 @@ import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class EmployeeAdapterView extends RecyclerView.Adapter<EmployeeAdapterView.EmployeeViewHolder> {
+public class EmployeeAdapterView extends RecyclerView.Adapter<EmployeeAdapterView.EmployeeViewHolder> implements Filterable {
 
     OnRecyclerItemClickInterface itemClickInterface;
     List<EmployeeModel> modelList;
+    List<EmployeeModel> modelListSearch;
+
 
     public EmployeeAdapterView(OnRecyclerItemClickInterface itemClickInterface, List<EmployeeModel> modelList) {
         this.itemClickInterface = itemClickInterface;
         this.modelList = modelList;
+        modelListSearch=new ArrayList<>();
+        modelListSearch.addAll(modelList);
     }
 
     @NonNull
@@ -75,6 +83,46 @@ public class EmployeeAdapterView extends RecyclerView.Adapter<EmployeeAdapterVie
     public int getItemCount() {
         return modelList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filterEmployee;
+    }
+    private Filter filterEmployee=new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<EmployeeModel> modelListFilter=new ArrayList<>();
+            if (charSequence==null || charSequence.length()==0)
+            {
+                modelListFilter.addAll(modelListSearch);
+            }
+            else{
+                String searchFilter=charSequence.toString().toLowerCase().trim();
+                for (EmployeeModel employeeModel:modelListSearch)
+                {
+                    if (employeeModel.getName().toLowerCase().contains(searchFilter))
+                    {
+                        modelListFilter.add(employeeModel);
+
+                    }
+                }
+
+            }
+
+            FilterResults filterResults=new FilterResults();
+            filterResults.values=modelListFilter;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            modelList.clear();
+            modelList.addAll((Collection<? extends EmployeeModel>) results.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
     public class EmployeeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

@@ -9,10 +9,7 @@
         android:title="Delete Note"
         app:showAsAction="always"
         />
-    <item
-        android:id="@+id/addId"
-        android:title="Add New Note"
-        />
+
     <item
         android:id="@+id/editId"
         app:showAsAction="always"

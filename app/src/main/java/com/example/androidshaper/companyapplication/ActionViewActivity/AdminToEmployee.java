@@ -7,22 +7,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.Adapter.EmployeeAdapterView;
 import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DetailsActivity.EmployeeDetailsActivity;
 import com.example.androidshaper.companyapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapterView.OnRecyclerItemClickInterface{
 
@@ -35,8 +49,14 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
     EditText editTextName,editTextEmail,editTextPhone,editTextGender,editTextAddress,editTextJoiningDate,editTextBirthDate,editTextManger;
     Button buttonAddEmployee;
 
+    String fetchUrl="https://benot.xyz/api/api/employees";
+
+    String uploadUrl="https://benot.xyz/api/api/employees";
+
 
     String name,email,phone,gender,address,joiningDate,birthDate,manager;
+
+    RequestQueue requestQueue;
 
 
     @Override
@@ -60,8 +80,25 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
         recyclerViewEmployee.setHasFixedSize(true);
         recyclerViewEmployee.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         modelList=new ArrayList<>();
-        modelList.add(new EmployeeModel("Md.Jubayer","csl.jubayer@gmail.com","01827095630","male","Mohakhali","22-08-2019","31-12-1995","hasan"));
-        modelList.add(new EmployeeModel("Md.Jubayer Hasan","csl.jubayer@gmail.com","01827095630","male","Mohakhali","12-03-2019","31-12-1995","hasan"));
+
+         requestQueue= Volley.newRequestQueue(this);
+
+         searchView.setFocusable(false);
+         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+             @Override
+             public boolean onQueryTextSubmit(String query) {
+                 return false;
+             }
+
+             @Override
+             public boolean onQueryTextChange(String newText) {
+
+                 employeeAdapterView.getFilter().filter(newText);
+
+                 return false;
+             }
+         });
+
 
 
 
@@ -71,9 +108,48 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
     }
 
     private void loadData() {
+        modelList.clear();
 
-        employeeAdapterView=new EmployeeAdapterView(onRecyclerItemClickInterface,modelList);
-        recyclerViewEmployee.setAdapter(employeeAdapterView);
+        final StringRequest stringRequest=new StringRequest(Request.Method.GET, fetchUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("data");
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
+
+                        EmployeeModel employeeModel=new EmployeeModel(jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("name"),jsonObjectReceive.getString("email"),
+                                jsonObjectReceive.getString("phone"),jsonObjectReceive.getString("gender"),jsonObjectReceive.getString("address"),
+                                jsonObjectReceive.getString("joining_date"),jsonObjectReceive.getString("birth_date"),jsonObjectReceive.getString("manager"));
+
+                        modelList.add(employeeModel);
+
+                    }
+                    employeeAdapterView=new EmployeeAdapterView(onRecyclerItemClickInterface,modelList);
+                    employeeAdapterView.notifyDataSetChanged();
+                    recyclerViewEmployee.setAdapter(employeeAdapterView);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        requestQueue.add(stringRequest);
+
+
     }
 
     private void bottomSheetPlugin() {
@@ -104,17 +180,66 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
                 birthDate=editTextBirthDate.getText().toString().trim();
                 manager=editTextManger.getText().toString().trim();
 
-                if (!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty())
+                if (!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty()&&!gender.isEmpty()&&!address.isEmpty()&&!joiningDate.isEmpty())
                 {
-                   //modelList.add(new EmployeeModel("Md.Jubayer Hasan","csl.jubayer@gmail.com","01827095630","male","Mohakhali","22-08-2019","31-12-1995","hasan"));
-                    modelList.add(new EmployeeModel(name,email,phone,gender,address,joiningDate,birthDate,manager));
 
-                    employeeAdapterView=new EmployeeAdapterView(onRecyclerItemClickInterface,modelList);
-                    recyclerViewEmployee.setAdapter(employeeAdapterView);
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, uploadUrl,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if (response.isEmpty())
+                                    {
+                                        Log.d("error", "onResponse: null ");
+
+                                    }
+
+                                    Log.d("error", "onResponse: "+response.toString());
+
+                                        try {
+                                            JSONObject jsonObject=new JSONObject(response);
+
+                                            Toast.makeText(AdminToEmployee.this,response.toString(),Toast.LENGTH_SHORT).show();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    //Toast.makeText(MainActivity.this,response,Toast.LENGTH_SHORT).show();
+
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                            //Toast.makeText(MainActivity.this,"Try Again"+error.toString(),Toast.LENGTH_SHORT).show();
+
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams()  {
+                            Map<String,String> params=new HashMap<String, String>();
+                            params.put("name",name);
+                            params.put("email",email);
+                            params.put("phone",phone);
+                            params.put("gender",gender);
+                            params.put("address",address);
+                            params.put("joining_date",joiningDate);
+                            params.put("birth_date",birthDate);
+                            params.put("manager",manager);
+                            params.put("password","something");
+                            return params;
+                        }
+                    };
+
+                    requestQueue.add(stringRequest);
+
+
+
 
 
                     searchView.clearFocus();
                     bottomSheetDialog.dismiss();
+                    loadData();
                 }
 
                 else{
@@ -135,5 +260,11 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
         intent.putExtra("position",position);
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadData();
     }
 }

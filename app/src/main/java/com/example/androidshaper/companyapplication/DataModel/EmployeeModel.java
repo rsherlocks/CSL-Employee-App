@@ -2,6 +2,7 @@ package com.example.androidshaper.companyapplication.DataModel;
 
 public class EmployeeModel {
 
+    String employee_id;
     String name;
     String email;
     String phone;
@@ -14,7 +15,8 @@ public class EmployeeModel {
     public EmployeeModel() {
     }
 
-    public EmployeeModel(String name, String email, String phone, String gender, String address, String joining_date, String birth_date, String manager) {
+    public EmployeeModel(String employee_id, String name, String email, String phone, String gender, String address, String joining_date, String birth_date, String manager) {
+        this.employee_id = employee_id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -23,6 +25,14 @@ public class EmployeeModel {
         this.joining_date = joining_date;
         this.birth_date = birth_date;
         this.manager = manager;
+    }
+
+    public String getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(String employee_id) {
+        this.employee_id = employee_id;
     }
 
     public String getName() {
@@ -88,4 +98,5 @@ public class EmployeeModel {
     public void setManager(String manager) {
         this.manager = manager;
     }
+
 }
