@@ -124,7 +124,7 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
         {
 
             new AlertDialog.Builder(this)
-                    .setMessage("Do you want to delete this Note?")
+                    .setMessage("Do you want to delete this Employee?")
                     .setTitle("WARNING!!!")
                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override

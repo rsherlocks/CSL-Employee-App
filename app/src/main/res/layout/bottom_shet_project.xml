@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:id="@+id/bottomSheetEmployee"
+    android:padding="20dp"
+    android:layout_gravity="bottom"
+    android:fitsSystemWindows="false"
+    android:background="@drawable/bottom_sheet"
+    android:layout_marginBottom="50dp"
+    app:layout_behavior="@string/fab_transformation_sheet_behavior"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/editTextProjectTeamId"
+                android:textSize="21dp"
+                android:hint="Team id"
+                android:gravity="top"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_perm_identity_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_margin="8dp"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectName"
+                android:textSize="21dp"
+                android:hint="Project name"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_account_box_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectStartDate"
+                android:textSize="21dp"
+                android:hint="Start-Date(12-5-2020)"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectEndDate"
+                android:textSize="21dp"
+                android:hint="End-Date(30-12-1997)"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectDescription"
+                android:textSize="21dp"
+                android:hint="Project description"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_details_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectAmount"
+                android:textSize="21dp"
+                android:hint="Project amount"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_money_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/editTextProjectType"
+                android:textSize="21dp"
+                android:hint="Project type"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_local_library_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectClient"
+                android:textSize="21dp"
+                android:hint="Project client"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_accessibility_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectPriority"
+                android:textSize="21dp"
+                android:hint="Project priority"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_label_important_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/editTextProjectLeader"
+                android:textSize="21dp"
+                android:hint="Project leader"
+                android:gravity="top"
+                android:layout_margin="8dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_perm_identity_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/addProjectButton"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content"
+                android:text="Add Project"
+
+
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

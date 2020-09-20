@@ -7,9 +7,9 @@
         android:gradientRadius="300dp"
         android:centerX="70"
         android:centerY="80"
-        android:startColor="#CDCACA"
-        android:centerColor="#DDC1C1"
-        android:endColor="#C5A4AC"
+        android:startColor="#FFFF"
+        android:centerColor="#FFFF"
+        android:endColor="#FFFF"
         android:angle="45"
         />
     <corners android:topLeftRadius="25dp"
