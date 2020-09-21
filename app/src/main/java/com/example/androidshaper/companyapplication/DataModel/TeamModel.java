@@ -2,6 +2,7 @@ package com.example.androidshaper.companyapplication.DataModel;
 
 public class TeamModel {
 
+    String team_id;
     String e_id_1;
     String e_id_2;
     String e_id_3;
@@ -11,12 +12,21 @@ public class TeamModel {
     public TeamModel() {
     }
 
-    public TeamModel(String e_id_1, String e_id_2, String e_id_3, String e_id_4, String e_id_5) {
+    public TeamModel(String team_id, String e_id_1, String e_id_2, String e_id_3, String e_id_4, String e_id_5) {
+        this.team_id = team_id;
         this.e_id_1 = e_id_1;
         this.e_id_2 = e_id_2;
         this.e_id_3 = e_id_3;
         this.e_id_4 = e_id_4;
         this.e_id_5 = e_id_5;
+    }
+
+    public String getTeam_id() {
+        return team_id;
+    }
+
+    public void setTeam_id(String team_id) {
+        this.team_id = team_id;
     }
 
     public String getE_id_1() {

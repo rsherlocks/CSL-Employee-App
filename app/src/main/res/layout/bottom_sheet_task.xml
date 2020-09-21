@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/bottomSheetTask"
+    android:padding="20dp"
+    android:layout_gravity="bottom"
+    android:fitsSystemWindows="false"
+    android:background="@drawable/bottom_sheet"
+    android:layout_marginBottom="50dp"
+    app:layout_behavior="@string/fab_transformation_sheet_behavior"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textSize="21dp"
+                android:text="Project"
+                android:gravity="top"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+               android:background="@drawable/round_edittext"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/projectIdSpinner"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textSize="21dp"
+                android:text="Employee Id"
+                android:gravity="top"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="5dp"
+
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_margin="8dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/round_edittext"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/employeeIdSpinner"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+
+            </LinearLayout>
+
+
+
+
+            <EditText
+                android:id="@+id/editTextTaskDescription"
+                android:textSize="21dp"
+                android:hint="Project description"
+                android:gravity="top"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_details_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/editTextTaskDue"
+                android:textSize="21dp"
+                android:hint="Project Due(1/0)"
+                android:gravity="top"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_baseline_label_important_24"
+                android:background="@drawable/round_edittext"
+                android:focusableInTouchMode="true"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:id="@+id/addTaskButton"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content"
+                android:text="Add Task"
+
+
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

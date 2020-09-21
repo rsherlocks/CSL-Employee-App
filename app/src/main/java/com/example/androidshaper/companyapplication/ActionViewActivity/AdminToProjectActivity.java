@@ -90,13 +90,27 @@ public class AdminToProjectActivity extends AppCompatActivity implements Project
             }
         });
 
+        searchViewProject.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                projectAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         loadProjectData();
     }
 
     private void imageViewAddProject() {
 
         final BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(this,R.style.BottomSheet);
-        View bottomSheet= LayoutInflater.from(this).inflate(R.layout.bottom_shet_project, (LinearLayout) findViewById(R.id.bottomSheetEmployee));
+        View bottomSheet= LayoutInflater.from(this).inflate(R.layout.bottom_shet_project, (LinearLayout) findViewById(R.id.bottomSheetProject));
         bottomSheetDialog.setContentView(bottomSheet);
         bottomSheetDialog.show();
         editTextTeamId=bottomSheetDialog.findViewById(R.id.editTextProjectTeamId);
