@@ -70,8 +70,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     String fetchProject="https://benot.xyz/api/api/projects";
     String fetchEmployee="https://benot.xyz/api/api/employees";
 
-    ArrayList<String> projectIdList;
-    ArrayList<String> employeeIdList;
+    public static ArrayList<String> projectIdList;
+    public static ArrayList<String> employeeIdList;
 
     String description,duo,projectId,eId;
 
@@ -100,11 +100,25 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         loadSpinnerData();
 
         loadTask();
+        searchViewTask.clearFocus();
 
         imageViewAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createNewTask();
+            }
+        });
+        searchViewTask.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                taskAdapter.getFilter().filter(newText);
+                return false;
             }
         });
 
@@ -390,5 +404,11 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         intent.putExtra("position",position);
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadTask();
     }
 }
