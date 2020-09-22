@@ -107,17 +107,24 @@
                 <EditText
                     android:id="@+id/editTextTaskDue"
                     android:textSize="21dp"
-                    android:hint="Project Due(1/0)"
+                    android:hint="12-5-2020"
                     android:gravity="top"
+                    android:layout_alignParentLeft="true"
 
 
 
-                    android:drawableStart="@drawable/ic_baseline_label_important_24"
                     android:background="@drawable/round_edittext"
                     android:focusableInTouchMode="true"
                     android:padding="10dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/dateTaskImageView"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:background="@drawable/ic_baseline_date_range_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
             </RelativeLayout>
 
 

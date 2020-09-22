@@ -5,18 +5,23 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,7 +44,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,10 +56,12 @@ import java.util.Map;
 public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRecyclerItemClickInterface {
 
     RecyclerView recyclerViewTask;
-    ImageView imageViewAddTask;
+    ImageView imageViewAddTask,imageViewDatePicker;
     SearchView searchViewTask;
 
     Button buttonAddTask;
+
+    long millisecond;
 
 
     ArrayAdapter arrayAdapterSpinnerProject,arrayAdapterSpinnerEmployee;
@@ -73,7 +84,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     public static ArrayList<String> projectIdList;
     public static ArrayList<String> employeeIdList;
 
-    String description,duo,projectId,eId;
+    String description,dateText,projectId,eId;
 
 
 
@@ -208,12 +219,48 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         bottomSheetDialog.setContentView(bottomSheet);
         bottomSheetDialog.show();
 
+        final long[] milliseconds = new long[1];
+
         spinnerProject=bottomSheetDialog.findViewById(R.id.projectIdSpinner);
         spinnerEmployee=bottomSheetDialog.findViewById(R.id.employeeIdSpinner);
 
         editTextDescription=bottomSheetDialog.findViewById(R.id.editTextTaskDescription);
         editTextDuo=bottomSheetDialog.findViewById(R.id.editTextTaskDue);
         buttonAddTask=bottomSheetDialog.findViewById(R.id.addTaskButton);
+
+        imageViewDatePicker=bottomSheetDialog.findViewById(R.id.dateTaskImageView);
+
+        imageViewDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Calendar calendar = Calendar.getInstance();
+                int YEAR = calendar.get(Calendar.YEAR);
+                int MONTH = calendar.get(Calendar.MONTH);
+                int DATE = calendar.get(Calendar.DATE);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AdminToTasks.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+
+                        Calendar calendar1 = Calendar.getInstance();
+                        calendar1.set(Calendar.YEAR, year);
+                        calendar1.set(Calendar.MONTH, month);
+                        calendar1.set(Calendar.DATE, date);
+                        dateText = DateFormat.format("dd-MM-yyyy", calendar1).toString();
+
+
+
+                        editTextDuo.setText(dateText);
+
+                    }
+                }, YEAR, MONTH, DATE);
+
+                datePickerDialog.show();
+            }
+        });
+
 
         arrayAdapterSpinnerProject=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,projectIdList);
         arrayAdapterSpinnerProject.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -266,9 +313,18 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
 
                 description=editTextDescription.getText().toString();
-                duo=editTextDuo.getText().toString();
+                dateText=editTextDuo.getText().toString();
 
-                if (!description.isEmpty()&&!duo.isEmpty())
+                SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+                try {
+                    Date d = (Date) f.parse(dateText);
+                    milliseconds[0] = d.getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (!description.isEmpty()&&!dateText.isEmpty())
                 {
 
                     StringRequest stringRequestAdd=new StringRequest(Request.Method.POST, fetchUrl,
@@ -309,7 +365,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                             Map<String,String> params=new HashMap<String, String>();
                             params.put("project_id",projectId);
                             params.put("employee_id",eId);
-                            params.put("due",duo);
+                            params.put("due",dateText);
                             params.put("description",description);
 
 
@@ -349,6 +405,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
 
     }
+
+
 
     private void loadTask() {
         taskModelsList.clear();

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
     EditText editTextTeamId,editTextProjectName,editTextStartDate,editTextEndDate,editTextDescription,editTextAmount,editTextType
             ,editTextClient,editTextPriority,editTextLeader;
+
+
 
 
 
@@ -196,6 +199,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         editTextClient=bottomSheetDialog.findViewById(R.id.editTextProjectClient);
         editTextPriority=bottomSheetDialog.findViewById(R.id.editTextProjectPriority);
         editTextLeader=bottomSheetDialog.findViewById(R.id.editTextProjectLeader);
+
         buttonProjectAdd=bottomSheetDialog.findViewById(R.id.addProjectButton);
 
         buttonProjectAdd.setText("Edit Project");

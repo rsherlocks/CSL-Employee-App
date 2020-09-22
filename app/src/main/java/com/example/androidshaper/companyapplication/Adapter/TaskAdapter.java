@@ -48,13 +48,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.textViewTaskId.setText("E_id: "+taskModel.getEmployee_id());
         holder.textViewDescription.setText(taskModel.getDescription());
         holder.textViewProjectId.setText("P_id: "+taskModel.getProject_id());
-        if (taskModel.getDue().equals("1"))
-        {
-            holder.textViewDue.setText("True");
-        }
-        else {
-            holder.textViewDue.setText("False");
-        }
+        holder.textViewDue.setText(taskModel.getDue());
+//        if (taskModel.getDue().equals("1"))
+//        {
+//            holder.textViewDue.setText("True");
+//        }
+//        else {
+//            holder.textViewDue.setText("False");
+//        }
 
         holder.viewCardColor.setBackgroundColor(getRandomColor());
 

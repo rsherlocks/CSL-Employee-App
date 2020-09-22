@@ -5,8 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +17,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,8 +64,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
     ArrayList<String> projectIdList=new ArrayList<>();
     ArrayList<String> employeeIdList=new ArrayList<>();
 
-    String description,duo,projectId,eId;
+    String description,dateText,projectId,eId;
     Button buttonAddTask;
+    ImageView imageViewDate;
 
 
     Toolbar toolbar;
@@ -258,6 +264,37 @@ public class TaskDetailsActivity extends AppCompatActivity {
         editTextDescription=bottomSheetDialog.findViewById(R.id.editTextTaskDescription);
         editTextDuo=bottomSheetDialog.findViewById(R.id.editTextTaskDue);
         buttonAddTask=bottomSheetDialog.findViewById(R.id.addTaskButton);
+        imageViewDate=bottomSheetDialog.findViewById(R.id.dateTaskImageView);
+        imageViewDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar calendar = Calendar.getInstance();
+                int YEAR = calendar.get(Calendar.YEAR);
+                int MONTH = calendar.get(Calendar.MONTH);
+                int DATE = calendar.get(Calendar.DATE);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TaskDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+
+                        Calendar calendar1 = Calendar.getInstance();
+                        calendar1.set(Calendar.YEAR, year);
+                        calendar1.set(Calendar.MONTH, month);
+                        calendar1.set(Calendar.DATE, date);
+                        dateText = DateFormat.format("dd-MM-yyyy", calendar1).toString();
+
+
+
+                        editTextDuo.setText(dateText);
+
+                    }
+                }, YEAR, MONTH, DATE);
+
+                datePickerDialog.show();
+
+            }
+        });
 
         editTextDescription.setText(taskModel.getDescription());
         editTextDuo.setText(taskModel.getDue());
@@ -314,9 +351,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
 
                 description=editTextDescription.getText().toString();
-                duo=editTextDuo.getText().toString();
+                dateText=editTextDuo.getText().toString();
 
-                if (!description.isEmpty()&&!duo.isEmpty())
+                if (!description.isEmpty()&&!dateText.isEmpty())
                 {
 
                     StringRequest stringRequestAdd=new StringRequest(Request.Method.PUT, editUrl,
@@ -339,15 +376,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
                                         textViewPId.setText("Project Id: "+jsonObject.getString("project_id"));
                                         textViewEId.setText("Employee Id: "+jsonObject.getString("employee_id"));
                                         textViewDescription.setText(" Description: "+jsonObject.getString("description"));
-                                        if (jsonObject.getString("due").equals("1"))
-                                        {
-                                            textViewDuo.setText("True");
-                                        }
-                                        else
-                                        {
-                                            textViewDuo.setText("False");
+                                        textViewDuo.setText("Date: "+jsonObject.getString("due"));
 
-                                        }
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -372,7 +402,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
                             Map<String,String> params=new HashMap<String, String>();
                             params.put("project_id",projectId);
                             params.put("employee_id",eId);
-                            params.put("due",duo);
+                            params.put("due",dateText);
                             params.put("description",description);
 
 
@@ -415,14 +445,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         textViewPId.setText("Project Id: "+taskModel.getProject_id());
         textViewEId.setText("Employee Id: "+taskModel.getEmployee_id());
         textViewDescription.setText(" Description: "+taskModel.getDescription());
-        if (taskModel.getDue().equals("1"))
-        {
-            textViewDuo.setText("True");
-        }
-        else
-        {
-            textViewDuo.setText("False");
-
-        }
+        textViewDuo.setText("Date: "+taskModel.getDue());
     }
 }
