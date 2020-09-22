@@ -23,7 +23,9 @@
         <activity android:name=".ActionViewActivity.AdminToProjectActivity" />
         <activity android:name=".DetailsActivity.EmployeeDetailsActivity" />
         <activity android:name=".PanelActivity.UserPanelActivity" />
-        <activity android:name=".ActionViewActivity.AdminToEmployee" />
+        <activity android:name=".ActionViewActivity.AdminToEmployee">
+
+        </activity>
         <activity android:name=".PanelActivity.AdminPanelActivity" />
         <activity android:name=".SignUi.UserRegistration" />
         <activity android:name=".SignUi.UserLogin" />

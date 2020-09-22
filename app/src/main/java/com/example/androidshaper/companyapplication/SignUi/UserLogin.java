@@ -2,7 +2,9 @@ package com.example.androidshaper.companyapplication.SignUi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +18,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.MainActivity;
+import com.example.androidshaper.companyapplication.PanelActivity.AdminPanelActivity;
+import com.example.androidshaper.companyapplication.PanelActivity.UserPanelActivity;
 import com.example.androidshaper.companyapplication.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,9 +34,9 @@ import java.util.Map;
 public class UserLogin extends AppCompatActivity implements View.OnClickListener {
 
     private EditText userMail,userPassword;
-    private Button btnLogin,buttonReg;
+    private Button btnLogin;
     private ProgressBar loginProgress;
-    private String url="http://192.168.1.101/company/login.php";
+    private String url="https://benot.xyz/api/api/employees";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +45,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
         userMail = findViewById(R.id.login_mail);
         userPassword = findViewById(R.id.login_password);
         btnLogin = findViewById(R.id.loginBtn);
-        buttonReg=findViewById(R.id.regBtn);
         loginProgress = findViewById(R.id.login_progress);
-        buttonReg.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         loginProgress.setVisibility(View.INVISIBLE);
 
@@ -58,7 +62,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
             final String mail = userMail.getText().toString();
             final String password = userPassword.getText().toString();
 
-            if (mail.isEmpty() || password.isEmpty()) {
+            if (mail.isEmpty() || password.isEmpty()|| password.length()<6) {
                 showMessage("Please Verify All Field");
                 btnLogin.setVisibility(View.VISIBLE);
                 loginProgress.setVisibility(View.INVISIBLE);
@@ -70,42 +74,61 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
 
         }
 
-       else  if (view.getId()==R.id.regBtn)
-        {
-            Intent regUser=new Intent(UserLogin.this, UserRegistration.class);
-            startActivity(regUser);
 
-        }
 
     }
 
     private void signIn(final String mail, final String password) {
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
+                        String checkMail,checkPassword;
+                        int m=0;
+
+                        JSONObject jsonObject= null;
                         try {
-                            JSONObject jsonObject= new JSONObject(response);
-
-                            if(jsonObject.getString("code").equals("1"))
+                            jsonObject = new JSONObject(response);
+                            JSONArray jsonArray=jsonObject.getJSONArray("data");
+                            for(int i=0;i<jsonArray.length();i++)
                             {
-                                showMessage(jsonObject.getString("message"));
-                                Intent intent=new Intent(UserLogin.this, MainActivity.class);
-                                startActivity(intent);
+                                JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
+
+                                checkMail=jsonObjectReceive.getString("email").toString().trim();
+
+                                checkPassword=jsonObjectReceive.getString("password").toString().trim();
+
+                                if (mail.equals(checkMail) && password.equals(checkPassword))
+                                {
+                                    m++;
+                                    SharedPreferences sharedPreferences=getSharedPreferences("userLogin", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                                    editor.putString("status","on");
+                                    editor.commit();
+                                    Intent intent=new Intent(UserLogin.this, UserPanelActivity.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                }
+
+
 
                             }
-                            else{
-                                showMessage(jsonObject.getString("message"));
+                            if (m<1)
+                            {
+                                Toast.makeText(getApplicationContext(),"Your Email or Password is wrong",Toast.LENGTH_SHORT).show();
+
                             }
-
-
                             loginProgress.setVisibility(View.INVISIBLE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
+
 
 
 

@@ -110,6 +110,37 @@
           android:padding="10dp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
+
+      <EditText
+          android:id="@+id/editTextEmployeePassword"
+          android:textSize="21dp"
+          android:hint="Password(6 digit)"
+          android:gravity="top"
+          android:layout_margin="8dp"
+          android:drawablePadding="5dp"
+          android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+          android:background="@drawable/round_edittext"
+          android:focusableInTouchMode="true"
+          android:padding="10dp"
+          android:inputType="textPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+      <EditText
+          android:id="@+id/editTextEmployeeConfirmPassword"
+          android:textSize="21dp"
+          android:hint="Confirm password"
+          android:gravity="top"
+          android:layout_margin="8dp"
+          android:drawablePadding="5dp"
+          android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+          android:background="@drawable/round_edittext"
+          android:focusableInTouchMode="true"
+          android:padding="10dp"
+          android:inputType="textPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
       <EditText
           android:id="@+id/editTextEmployeeManager"
           android:textSize="21dp"

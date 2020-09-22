@@ -46,7 +46,7 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
     EmployeeAdapterView employeeAdapterView;
     EmployeeAdapterView.OnRecyclerItemClickInterface onRecyclerItemClickInterface;
     public static List<EmployeeModel> modelList;
-    EditText editTextName,editTextEmail,editTextPhone,editTextGender,editTextAddress,editTextJoiningDate,editTextBirthDate,editTextManger;
+    EditText editTextName,editTextEmail,editTextPhone,editTextGender,editTextAddress,editTextJoiningDate,editTextBirthDate,editTextManger,editTextPassword,editTextConfirmPassword;
     Button buttonAddEmployee;
 
     String fetchUrl="https://benot.xyz/api/api/employees";
@@ -54,7 +54,7 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
     String uploadUrl="https://benot.xyz/api/api/employees";
 
 
-    String name,email,phone,gender,address,joiningDate,birthDate,manager;
+    String name,email,phone,gender,address,joiningDate,birthDate,manager,password,confirmPassword;
 
     RequestQueue requestQueue;
 
@@ -166,6 +166,8 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
         editTextJoiningDate=bottomSheetDialog.findViewById(R.id.editTextEmployeeJoiningDate);
         editTextBirthDate=bottomSheetDialog.findViewById(R.id.editTextEmployeeBirthDate);
         editTextManger=bottomSheetDialog.findViewById(R.id.editTextEmployeeManager);
+        editTextPassword=bottomSheetDialog.findViewById(R.id.editTextEmployeePassword);
+        editTextConfirmPassword=bottomSheetDialog.findViewById(R.id.editTextEmployeeConfirmPassword);
         buttonAddEmployee=bottomSheetDialog.findViewById(R.id.addEmployeeButton);
         buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,67 +181,83 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
                 joiningDate=editTextJoiningDate.getText().toString().trim();
                 birthDate=editTextBirthDate.getText().toString().trim();
                 manager=editTextManger.getText().toString().trim();
+                password=editTextPassword.getText().toString().trim();
+                confirmPassword=editTextConfirmPassword.getText().toString().trim();
 
-                if (!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty()&&!gender.isEmpty()&&!address.isEmpty()&&!joiningDate.isEmpty())
+                if (!name.isEmpty()&&!email.isEmpty()&&!phone.isEmpty()&&!gender.isEmpty()&&!address.isEmpty()&&!joiningDate.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty())
                 {
 
-                    StringRequest stringRequest=new StringRequest(Request.Method.POST, uploadUrl,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    if (response.isEmpty())
-                                    {
-                                        Log.d("error", "onResponse: null ");
+                    if (password.equals(confirmPassword) && password.length()>=6)
+                    {
+                        StringRequest stringRequest=new StringRequest(Request.Method.POST, uploadUrl,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        if (response.isEmpty())
+                                        {
+                                            Log.d("error", "onResponse: null ");
 
-                                    }
+                                        }
 
-                                    Log.d("error", "onResponse: "+response.toString());
+                                        Log.d("error", "onResponse: "+response.toString());
 
                                         try {
                                             JSONObject jsonObject=new JSONObject(response);
 
                                             Toast.makeText(AdminToEmployee.this,response.toString(),Toast.LENGTH_SHORT).show();
+                                            loadData();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
 
 
-                                    //Toast.makeText(MainActivity.this,response,Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(MainActivity.this,response,Toast.LENGTH_SHORT).show();
 
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
 
-                            //Toast.makeText(MainActivity.this,"Try Again"+error.toString(),Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this,"Try Again"+error.toString(),Toast.LENGTH_SHORT).show();
 
-                        }
-                    }){
-                        @Override
-                        protected Map<String, String> getParams()  {
-                            Map<String,String> params=new HashMap<String, String>();
-                            params.put("name",name);
-                            params.put("email",email);
-                            params.put("phone",phone);
-                            params.put("gender",gender);
-                            params.put("address",address);
-                            params.put("joining_date",joiningDate);
-                            params.put("birth_date",birthDate);
-                            params.put("manager",manager);
-                            params.put("password","something");
-                            return params;
-                        }
-                    };
+                            }
+                        }){
+                            @Override
+                            protected Map<String, String> getParams()  {
+                                Map<String,String> params=new HashMap<String, String>();
+                                params.put("name",name);
+                                params.put("email",email);
+                                params.put("phone",phone);
+                                params.put("gender",gender);
+                                params.put("address",address);
+                                params.put("joining_date",joiningDate);
+                                params.put("birth_date",birthDate);
+                                params.put("manager",manager);
+                                params.put("password",password);
+                                return params;
+                            }
+                        };
 
-                    requestQueue.add(stringRequest);
-
-
+                        requestQueue.add(stringRequest);
 
 
 
-                    searchView.clearFocus();
-                    bottomSheetDialog.dismiss();
-                    loadData();
+
+
+                        searchView.clearFocus();
+                        loadData();
+                        bottomSheetDialog.dismiss();
+                    }
+
+                    else
+
+                    {
+                        Toast.makeText(getApplicationContext(),"Your Password Not Match or lower then 6 digit",Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+
                 }
 
                 else{

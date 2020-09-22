@@ -2,10 +2,13 @@ package com.example.androidshaper.companyapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTasks;
 import com.example.androidshaper.companyapplication.PanelActivity.AdminPanelActivity;
@@ -33,14 +36,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v.getId()==R.id.dashboardAdminButton)
         {
-            Intent intent=new Intent(this, AdminLogin.class);
-            startActivity(intent);
+            SharedPreferences sharedPreferences=getSharedPreferences("adminLogin", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor= sharedPreferences.edit();
+            String status=sharedPreferences.getString("status","off").toString().trim();
+            if (status.equals("on"))
+            {
+//                Toast.makeText(getApplicationContext(),status,Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this, AdminPanelActivity.class);
+                startActivity(intent);
+            }
+            else if (status.equals("off"))
+            {
+//                Toast.makeText(getApplicationContext(),status,Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this, AdminLogin.class);
+                startActivity(intent);
+            }
+
 
         }
         else if (v.getId()==R.id.dashboardEmployeeButton)
         {
-            Intent intent=new Intent(this, UserLogin.class);
-            startActivity(intent);
+            SharedPreferences sharedPreferences=getSharedPreferences("userLogin", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor= sharedPreferences.edit();
+
+                String status=sharedPreferences.getString("status","off").toString().trim();
+
+                if (status.equals("on"))
+                {
+//                    Toast.makeText(getApplicationContext(),status,Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(this, UserPanelActivity.class);
+                    startActivity(intent);
+
+                }
+                else if (status.equals("off"))
+                {
+//                    Toast.makeText(getApplicationContext(),status,Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(this, UserLogin.class);
+                    startActivity(intent);
+
+                }
+
+
+
+
         }
 
     }

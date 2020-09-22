@@ -89,29 +89,36 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_baseline_details_24"
+
                 android:background="@drawable/round_edittext"
                 android:focusableInTouchMode="true"
                 android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="150dp"/>
 
-            <EditText
-                android:id="@+id/editTextTaskDue"
-                android:textSize="21dp"
-                android:hint="Project Due(1/0)"
-                android:gravity="top"
+            <RelativeLayout
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="15dp"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_baseline_label_important_24"
-                android:background="@drawable/round_edittext"
-                android:focusableInTouchMode="true"
-                android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editTextTaskDue"
+                    android:textSize="21dp"
+                    android:hint="Project Due(1/0)"
+                    android:gravity="top"
+
+
+
+                    android:drawableStart="@drawable/ic_baseline_label_important_24"
+                    android:background="@drawable/round_edittext"
+                    android:focusableInTouchMode="true"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
 
 
 

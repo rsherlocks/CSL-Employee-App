@@ -11,6 +11,9 @@ public class EmployeeModel {
     String joining_date;
     String birth_date;
     String manager;
+    String password;
+
+
 
     public EmployeeModel() {
     }
