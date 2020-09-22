@@ -12,8 +12,8 @@
     tools:context=".MainActivity">
     <com.google.android.material.textview.MaterialTextView
         android:textSize="21dp"
-        android:text="@string/employee_dashboard"
-        android:layout_margin="10dp"
+        android:text="CSL Company Application"
+        android:layout_margin="20dp"
         android:padding="5dp"
         android:textAlignment="center"
         android:textColor="#000"
@@ -23,11 +23,11 @@
     <Button
         android:textColor="#000"
         android:textSize="19dp"
-        android:id="@+id/taskEmployeeButton"
+        android:id="@+id/dashboardEmployeeButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:text="tasks"
+       android:layout_margin="25dp"
+        android:layout_height="75dp"
+        android:text="Employee"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
         />
@@ -35,37 +35,16 @@
     <Button
         android:textColor="#000"
         android:textSize="19dp"
-
-        android:id="@+id/approvalEmployeeButton"
+        android:id="@+id/dashboardAdminButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:text="approval"
+        android:layout_height="75dp"
+        android:layout_margin="25dp"
+
+        android:text="Admin"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
         />
-    <Button
-        android:textColor="#000"
-        android:textSize="19dp"
-        android:id="@+id/dueEmployeeButton"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="due"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
-        />
-    <Button
-        android:textColor="#000"
-        android:textSize="19dp"
-        android:id="@+id/checkInOutEmployeeButton"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="check in/out"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-
-        />
 
 
 
