@@ -13,14 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTeam;
+import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToProject;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToTask;
-import com.example.androidshaper.companyapplication.DetailsActivity.EmployeeTaskDetailsActivity;
 import com.example.androidshaper.companyapplication.R;
 
 public class UserPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    Button buttonTask,buttonApproval,buttonDue,buttonAttendance;
+    Button buttonTask,buttonProject,buttonTeam,buttonAttendance;
 
 
     Toolbar toolbar;
@@ -33,8 +34,14 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_user_panel);
         buttonTask=findViewById(R.id.taskEmployeeButton);
         toolbar=findViewById(R.id.toolbarEmployeePanel);
+        buttonProject=findViewById(R.id.projectUserButton);
+        buttonTeam=findViewById(R.id.teamUserButton);
+        buttonAttendance=findViewById(R.id.attendanceUserButton);
         setSupportActionBar(toolbar);
         buttonTask.setOnClickListener(this);
+        buttonProject.setOnClickListener(this);
+        buttonTeam.setOnClickListener(this);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -74,6 +81,19 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         if (v.getId()==R.id.taskEmployeeButton)
         {
             Intent intent=new Intent(this, EmployeeToTask.class);
+            startActivity(intent);
+
+        }
+        else if (v.getId()==R.id.projectUserButton)
+        {
+            Intent intent=new Intent(this, EmployeeToProject.class);
+            startActivity(intent);
+
+        }
+        else if (v.getId()==R.id.teamUserButton)
+        {
+            Intent intent=new Intent(this, AdminToTeam.class);
+            intent.putExtra("check",1);
             startActivity(intent);
 
         }

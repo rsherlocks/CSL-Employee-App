@@ -38,6 +38,17 @@
         <Button
             android:textColor="#000"
             android:textSize="19dp"
+            android:id="@+id/projectUserButton"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Project"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+            />
+        <Button
+            android:textColor="#000"
+            android:textSize="19dp"
 
             android:id="@+id/taskEmployeeButton"
             android:layout_width="match_parent"
@@ -47,36 +58,26 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
             />
+
         <Button
             android:textColor="#000"
             android:textSize="19dp"
-            android:id="@+id/approvalButton"
-            android:layout_margin="10dp"
+            android:id="@+id/attendanceUserButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Approval"
+            android:layout_margin="10dp"
+            android:text="Attendence"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
             />
         <Button
             android:textColor="#000"
             android:textSize="19dp"
-            android:id="@+id/dueButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:text="Due"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-
-            />
-        <Button
-            android:textColor="#000"
-            android:textSize="19dp"
-            android:id="@+id/attendanceButton"
+            android:id="@+id/teamUserButton"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Check in/out"
+            android:text="Team"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
             />

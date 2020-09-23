@@ -16,12 +16,13 @@ import android.widget.Button;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToEmployee;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToProjectActivity;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTasks;
+import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTeam;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToTask;
 import com.example.androidshaper.companyapplication.R;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonTask,buttonEmployee,buttonProject;
+    Button buttonTask,buttonEmployee,buttonProject,buttonTeam;
    Toolbar toolbar;
 
     @Override
@@ -32,6 +33,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         buttonTask=findViewById(R.id.taskAdminButton);
         buttonProject=findViewById(R.id.projectButtonManagement);
         buttonEmployee=findViewById(R.id.employeeButtonManagement);
+        buttonTeam=findViewById(R.id.teamButton);
         toolbar=findViewById(R.id.toolbarAdminPanel);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,6 +42,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         buttonProject.setOnClickListener(this);
         buttonEmployee.setOnClickListener(this);
         buttonTask.setOnClickListener(this);
+        buttonTeam.setOnClickListener(this);
 
     }
 
@@ -85,6 +88,12 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         else if (v.getId()==R.id.projectButtonManagement)
         {
             Intent intent=new Intent(this, AdminToProjectActivity.class);
+            startActivity(intent);
+        }
+        else if (v.getId()==R.id.teamButton)
+        {
+            Intent intent=new Intent(this, AdminToTeam.class);
+            intent.putExtra("check",0);
             startActivity(intent);
         }
 

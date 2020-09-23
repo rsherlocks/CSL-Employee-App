@@ -7,7 +7,14 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    tools:context=".DetailsActivity.EmployeeTaskDetailsActivity">
+    tools:context=".DetailsActivity.TeamDetails">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarTeam"
+        app:title="Employee Profile"
+        app:menu="@menu/menu_toolar"
+        android:layout_width="match_parent"
+        android:background="#FAF1F1"
+        android:layout_height="50dp"/>
 
     <ScrollView
         android:layout_gravity="center"
@@ -37,41 +44,61 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/project" />
             <TextView
-                android:id="@+id/textViewTaskEmployeeDetailsProjectId"
+                android:id="@+id/textViewEmployeeDetailsTeamId"
                 android:layout_marginTop="20dp"
-                android:text="Project id"
+                android:text="TEam Id"
+                android:textSize="19dp"
+                android:padding="8dp"
+                android:background="@drawable/reg_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/textViewDetailsEmployeeId1"
+                android:layout_marginTop="25dp"
+                android:text="Employee Id1"
                 android:textSize="19dp"
                 android:padding="8dp"
                 android:background="@drawable/reg_edittext_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/textViewTaskEmployeeDetailsEmployeeId"
+                android:id="@+id/textViewDetailsEmployeeId2"
                 android:layout_marginTop="25dp"
-                android:text="Employee Id"
+                android:text="Employee Id2"
                 android:textSize="19dp"
                 android:padding="8dp"
                 android:background="@drawable/reg_edittext_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/textViewTaskEmployeeDetailsDescription"
+                android:id="@+id/textViewDetailsEmployeeId3"
                 android:layout_marginTop="25dp"
-                android:text="Description"
+                android:text="Employee Id3"
                 android:textSize="19dp"
                 android:padding="8dp"
                 android:background="@drawable/reg_edittext_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/textViewTaskEmployeeDetailsDuo"
+                android:id="@+id/textViewDetailsEmployeeId4"
                 android:layout_marginTop="25dp"
-                android:text="Duo"
+                android:text="Employee Id4"
                 android:textSize="19dp"
                 android:padding="8dp"
                 android:background="@drawable/reg_edittext_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewDetailsEmployeeId5"
+                android:layout_marginTop="25dp"
+                android:text="Employee Id5"
+                android:textSize="19dp"
+                android:padding="8dp"
+                android:background="@drawable/reg_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
 
 
         </LinearLayout>

@@ -74,6 +74,17 @@
         <Button
             android:textColor="#000"
             android:textSize="19dp"
+            android:id="@+id/teamButton"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Team"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+            />
+        <Button
+            android:textColor="#000"
+            android:textSize="19dp"
             android:id="@+id/attendanceButton"
             android:layout_margin="10dp"
             android:layout_width="match_parent"

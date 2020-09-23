@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToProjectActivity;
+import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToProject;
 import com.example.androidshaper.companyapplication.DataModel.ProjectModel;
 import com.example.androidshaper.companyapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -54,6 +55,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
     Toolbar toolbarProject;
 
     RequestQueue requestQueue;
+    int check;
 
     String editUrl="https://benot.xyz/api/api/projects/";
 
@@ -76,8 +78,18 @@ public class ProjectDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         position=getIntent().getExtras().getInt("position");
+        check=getIntent().getExtras().getInt("check");
         requestQueue= Volley.newRequestQueue(this);
-        projectModel= AdminToProjectActivity.modelList.get(position);
+        if (check==1)
+        {
+            projectModel= EmployeeToProject.modelList.get(position);
+        }
+        else {
+            projectModel= AdminToProjectActivity.modelList.get(position);
+
+        }
+
+
         editUrl=editUrl+projectModel.getProject_id();
         setProjectData(position);
     }
@@ -101,6 +113,16 @@ public class ProjectDetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_toolar,menu);
+
+        if (check==1)
+        {
+            MenuItem menuItemEdit=menu.findItem(R.id.editId);
+            MenuItem menuItemDelete=menu.findItem(R.id.deleteId);
+            menuItemEdit.setVisible(false);
+            menuItemDelete.setVisible(false);
+        }
+
+
 
         return true;
     }

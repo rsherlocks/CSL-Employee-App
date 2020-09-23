@@ -33,6 +33,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToProjectActivity;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTasks;
+import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToProject;
+import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToTask;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -53,7 +55,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
     Spinner spinnerEmployee,spinnerProject;
     ArrayAdapter arrayAdapterSpinnerProject,arrayAdapterSpinnerEmployee;
 
-    int position;
+    int position,check;
     TaskModel taskModel;
     RequestQueue requestQueue;
     String editUrl="https://benot.xyz/api/api/tasks/";
@@ -85,11 +87,25 @@ public class TaskDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         position=getIntent().getExtras().getInt("position");
+        check=getIntent().getExtras().getInt("check");
+
+        if (check==1)
+        {
+            taskModel= EmployeeToTask.taskModelsList.get(position);
+            projectIdList=EmployeeToTask.projectIdList;
+            employeeIdList=EmployeeToTask.employeeIdList;
+        }
+        else {
+            taskModel= AdminToTasks.taskModelsList.get(position);
+            projectIdList=AdminToTasks.projectIdList;
+            employeeIdList=AdminToTasks.employeeIdList;
+
+        }
+
         requestQueue= Volley.newRequestQueue(this);
-        taskModel= AdminToTasks.taskModelsList.get(position);
+
         editUrl=editUrl+taskModel.getTaks_id();
-        projectIdList=AdminToTasks.projectIdList;
-        employeeIdList=AdminToTasks.employeeIdList;
+
 
         loadData();
         loadSpinnerData();
@@ -174,6 +190,13 @@ public class TaskDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolar,menu);
+        if (check==1)
+        {
+            MenuItem menuItemEdit=menu.findItem(R.id.editId);
+            MenuItem menuItemDelete=menu.findItem(R.id.deleteId);
+            menuItemEdit.setVisible(false);
+            menuItemDelete.setVisible(false);
+        }
         return true;
     }
 

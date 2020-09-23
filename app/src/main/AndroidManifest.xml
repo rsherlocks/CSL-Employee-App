@@ -12,20 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SignUi.AdminLogin"></activity>
-        <activity android:name=".DetailsActivity.EmployeeTaskDetailsActivity" />
-        <activity android:name=".ActionViewActivity.EmployeeToTask"/>
+        <activity android:name=".ActionViewActivity.EmployeeToTeam" />
+        <activity android:name=".ActionViewActivity.EmployeeToProject" />
+        <activity android:name=".SignUi.AdminLogin" />
+        <activity android:name=".DetailsActivity.TeamDetails" />
+        <activity android:name=".ActionViewActivity.EmployeeToTask" />
         <activity android:name=".ActionViewActivity.AdminToTeam" />
         <activity android:name=".ActionViewActivity.AdminToAttendence" />
         <activity android:name=".DetailsActivity.TaskDetailsActivity" />
-        <activity android:name=".ActionViewActivity.AdminToTasks"></activity>
+        <activity android:name=".ActionViewActivity.AdminToTasks" />
         <activity android:name=".DetailsActivity.ProjectDetailActivity" />
         <activity android:name=".ActionViewActivity.AdminToProjectActivity" />
         <activity android:name=".DetailsActivity.EmployeeDetailsActivity" />
         <activity android:name=".PanelActivity.UserPanelActivity" />
-        <activity android:name=".ActionViewActivity.AdminToEmployee">
-
-        </activity>
+        <activity android:name=".ActionViewActivity.AdminToEmployee" />
         <activity android:name=".PanelActivity.AdminPanelActivity" />
         <activity android:name=".SignUi.UserRegistration" />
         <activity android:name=".SignUi.UserLogin" />

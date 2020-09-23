@@ -6,8 +6,12 @@
     android:layout_height="match_parent"
     android:background="#F2F2F2"
     android:padding="20dp"
-    tools:context=".ActionViewActivity.AdminToTeam">
+    tools:context=".ActionViewActivity.EmployeeToProject">
+
+
+
     <RelativeLayout
+
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,20 +23,14 @@
             <TextView
                 android:id="@+id/textViewShow"
                 android:textSize="24sp"
-                android:text="Team"
+                android:text="Project"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/adminTeamAddButton"
-                android:src="@drawable/ic_plus"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
+
 
 
 
@@ -52,7 +50,7 @@
             android:background="#fff">
             <androidx.appcompat.widget.SearchView
 
-                android:id="@+id/searchViewAdminTeam"
+                android:id="@+id/searchViewEmployeeProject"
                 android:layout_width="match_parent"
                 android:focusable="false"
 
@@ -65,7 +63,7 @@
 
         </com.google.android.material.card.MaterialCardView>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewAdminTeam"
+            android:id="@+id/recyclerViewEmployeeProject"
             android:layout_below="@id/searchCard"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="15dp"

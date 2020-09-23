@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,7 +17,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.Adapter.TaskAdapter;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
-import com.example.androidshaper.companyapplication.DetailsActivity.EmployeeTaskDetailsActivity;
 import com.example.androidshaper.companyapplication.DetailsActivity.TaskDetailsActivity;
 import com.example.androidshaper.companyapplication.R;
 
@@ -39,6 +37,11 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
     TaskAdapter taskAdapter;
 
     String fetchUrl="https://benot.xyz/api/api/tasks";
+    String fetchProject="https://benot.xyz/api/api/projects";
+    String fetchEmployee="https://benot.xyz/api/api/employees";
+
+    public static ArrayList<String> projectIdList;
+    public static ArrayList<String> employeeIdList;
 
     TaskAdapter.OnRecyclerItemClickInterface onRecyclerItemClickInterface;
 
@@ -54,12 +57,15 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
         recyclerViewEmployeeTask.setHasFixedSize(true);
 
         taskModelsList=new ArrayList<>();
+        projectIdList=new ArrayList<>();
+        employeeIdList=new ArrayList<>();
         recyclerViewEmployeeTask.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         requestQueue= Volley.newRequestQueue(this);
 
 
         loadData();
+        loadSpinnerData();
 
         searchViewEmployeeTask.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -73,6 +79,79 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
                 return false;
             }
         });
+    }
+
+    private void loadSpinnerData() {
+        projectIdList.clear();
+        employeeIdList.clear();
+        final StringRequest stringRequestProject=new StringRequest(Request.Method.GET,fetchProject, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("data");
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
+
+                        projectIdList.add(jsonObjectReceive.getString("project_id"));
+
+
+                    }
+
+//
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        final StringRequest stringRequestEmployee=new StringRequest(Request.Method.GET,fetchEmployee, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("data");
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
+
+                        employeeIdList.add(jsonObjectReceive.getString("employee_id"));
+
+
+                    }
+
+//
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        requestQueue.add(stringRequestProject);
+        requestQueue.add(stringRequestEmployee);
     }
 
     private void loadData() {
@@ -124,8 +203,9 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
     @Override
     public void OnItemClick(int position) {
 
-        Intent intent=new Intent(EmployeeToTask.this, EmployeeTaskDetailsActivity.class);
+        Intent intent=new Intent(EmployeeToTask.this, TaskDetailsActivity.class);
         intent.putExtra("position",position);
+        intent.putExtra("check",1);
         startActivity(intent);
 
     }
