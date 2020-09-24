@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CSL Application</string>
-    <string name="admin_dashboard">ADMIN PANEL DASHBOARD</string>
+    <string name="admin_dashboard">ADMIN DASHBOARD</string>
     <string name="employee_dashboard">EMPLOYEE DASHBOARD</string>
 </resources>

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToAttendance;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToEmployee;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToProjectActivity;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTasks;
@@ -22,7 +23,7 @@ import com.example.androidshaper.companyapplication.R;
 
 public class AdminPanelActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonTask,buttonEmployee,buttonProject,buttonTeam;
+    Button buttonTask,buttonEmployee,buttonProject,buttonTeam,buttonAttendance;
    Toolbar toolbar;
 
     @Override
@@ -34,6 +35,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         buttonProject=findViewById(R.id.projectButtonManagement);
         buttonEmployee=findViewById(R.id.employeeButtonManagement);
         buttonTeam=findViewById(R.id.teamButton);
+        buttonAttendance=findViewById(R.id.attendanceButton);
         toolbar=findViewById(R.id.toolbarAdminPanel);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,6 +45,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         buttonEmployee.setOnClickListener(this);
         buttonTask.setOnClickListener(this);
         buttonTeam.setOnClickListener(this);
+        buttonAttendance.setOnClickListener(this);
 
     }
 
@@ -94,6 +97,11 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         {
             Intent intent=new Intent(this, AdminToTeam.class);
             intent.putExtra("check",0);
+            startActivity(intent);
+        }
+        else if (v.getId()==R.id.attendanceButton)
+        {
+            Intent intent=new Intent(this, AdminToAttendance.class);
             startActivity(intent);
         }
 

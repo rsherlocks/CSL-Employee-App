@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.Adapter.EmployeeAdapterView;
 import com.example.androidshaper.companyapplication.Adapter.ProjectAdapter;
 import com.example.androidshaper.companyapplication.Adapter.TaskAdapter;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.ProjectModel;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.DetailsActivity.ProjectDetailActivity;
@@ -80,9 +81,12 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     String fetchUrl="https://benot.xyz/api/api/tasks";
     String fetchProject="https://benot.xyz/api/api/projects";
     String fetchEmployee="https://benot.xyz/api/api/employees";
+    public static String eName,pName;
 
     public static ArrayList<String> projectIdList;
     public static ArrayList<String> employeeIdList;
+    public static ArrayList<String> projectIdName;
+    public static List<EmployeeModel> employeeIdName;
 
     String description,dateText,projectId,eId;
 
@@ -106,7 +110,10 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
         taskModelsList=new ArrayList<>();
         projectIdList=new ArrayList<>();
-       employeeIdList=new ArrayList<>();
+        employeeIdList=new ArrayList<>();
+        projectIdName=new ArrayList<>();
+        employeeIdName=new ArrayList<>();
+
 
         loadSpinnerData();
 
@@ -155,6 +162,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                         projectIdList.add(jsonObjectReceive.getString("project_id"));
 
 
+
                     }
 
 //
@@ -186,6 +194,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
                         employeeIdList.add(jsonObjectReceive.getString("employee_id"));
+                        EmployeeModel employeeModel=new EmployeeModel(jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("name"));
+                        employeeIdName.add(employeeModel);
 
 
                     }
@@ -343,6 +353,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                                         JSONObject jsonObject=new JSONObject(response);
 
                                         Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_SHORT).show();
+                                        loadSpinnerData();
+                                        loadTask();
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -377,9 +389,10 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
                     searchViewTask.clearFocus();
 
-
-                    bottomSheetDialog.dismiss();
+                    loadSpinnerData();
                     loadTask();
+                    bottomSheetDialog.dismiss();
+
 
                 }
 
@@ -410,6 +423,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
     private void loadTask() {
         taskModelsList.clear();
+        employeeIdName.clear();
 
         final StringRequest stringRequest=new StringRequest(Request.Method.GET, fetchUrl, new Response.Listener<String>() {
             @Override
@@ -422,17 +436,34 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
-                        TaskModel taskModel=new TaskModel(jsonObjectReceive.getString("taks_id"),jsonObjectReceive.getString("project_id")
-                        ,jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("description"),jsonObjectReceive.getString("due"));
-
-
+                        TaskModel taskModel=new TaskModel(jsonObjectReceive.getString("taks_id"),
+                                jsonObjectReceive.getString("project_id")
+                        ,jsonObjectReceive.getString("employee_id"),
+                                jsonObjectReceive.getString("description"),
+                                jsonObjectReceive.getString("due"));
                         taskModelsList.add(taskModel);
 
-                    }
 
-                    taskAdapter=new TaskAdapter(onRecyclerItemClickInterface,taskModelsList);
-                    taskAdapter.notifyDataSetChanged();
-                    recyclerViewTask.setAdapter(taskAdapter);
+
+
+
+
+
+
+
+                    }
+                   // Log.d("EmployeeName", "onResponse: "+employeeIdName.get(0).getName().toString());
+
+
+
+                        taskAdapter=new TaskAdapter(onRecyclerItemClickInterface,taskModelsList,employeeIdName);
+                        taskAdapter.notifyDataSetChanged();
+                        recyclerViewTask.setAdapter(taskAdapter);
+
+
+
+
+
 
 
 
@@ -453,6 +484,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         requestQueue.add(stringRequest);
 
 
+
     }
 
     @Override
@@ -467,6 +499,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     @Override
     protected void onRestart() {
         super.onRestart();
+        loadSpinnerData();
         loadTask();
     }
 }

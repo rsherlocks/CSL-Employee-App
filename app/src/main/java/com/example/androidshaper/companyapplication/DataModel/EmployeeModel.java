@@ -18,6 +18,11 @@ public class EmployeeModel {
     public EmployeeModel() {
     }
 
+    public EmployeeModel(String employee_id, String name) {
+        this.employee_id = employee_id;
+        this.name = name;
+    }
+
     public EmployeeModel(String employee_id, String name, String email, String phone, String gender, String address, String joining_date, String birth_date, String manager) {
         this.employee_id = employee_id;
         this.name = name;

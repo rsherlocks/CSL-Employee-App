@@ -18,7 +18,7 @@
         <activity android:name=".DetailsActivity.TeamDetails" />
         <activity android:name=".ActionViewActivity.EmployeeToTask" />
         <activity android:name=".ActionViewActivity.AdminToTeam" />
-        <activity android:name=".ActionViewActivity.AdminToAttendence" />
+        <activity android:name=".ActionViewActivity.AdminToAttendance" />
         <activity android:name=".DetailsActivity.TaskDetailsActivity" />
         <activity android:name=".ActionViewActivity.AdminToTasks" />
         <activity android:name=".DetailsActivity.ProjectDetailActivity" />
