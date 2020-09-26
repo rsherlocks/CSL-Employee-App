@@ -158,8 +158,11 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
+                       pName=jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("project_id")+")";
 
-                        projectIdList.add(jsonObjectReceive.getString("project_id"));
+                        projectIdList.add(pName);
+
+                        pName="";
 
 
 

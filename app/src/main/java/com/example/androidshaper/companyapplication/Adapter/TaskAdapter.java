@@ -74,7 +74,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         {
             if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
             {
-                holder.textViewTaskId.setText("Employee Name: "+employeeModel.getName());
+                holder.textViewProjectId.setText("Employee Name: "+employeeModel.getName());
             }
         }
 
@@ -83,7 +83,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
 
         holder.textViewDescription.setText(taskModel.getDescription());
-        holder.textViewProjectId.setText("P_id: "+taskModel.getProject_id());
+        holder.textViewTaskId.setText("Task_id: : "+taskModel.getTaks_id());
         holder.textViewDue.setText("Date: "+taskModel.getDue());
         holder.viewCardColor.setBackgroundColor(getRandomColor());
 

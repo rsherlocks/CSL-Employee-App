@@ -125,7 +125,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
-                        projectIdList.add(jsonObjectReceive.getString("project_id"));
+                        projectIdList.add(jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("project_id")+")");
 
 
                     }
