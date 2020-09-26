@@ -117,7 +117,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
         loadSpinnerData();
 
-        loadTask();
+
         searchViewTask.clearFocus();
 
         imageViewAddTask.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +222,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
         requestQueue.add(stringRequestProject);
         requestQueue.add(stringRequestEmployee);
+
+        loadTask();
 
 
     }
@@ -393,7 +395,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                     searchViewTask.clearFocus();
 
                     loadSpinnerData();
-                    loadTask();
+
                     bottomSheetDialog.dismiss();
 
 
@@ -503,6 +505,6 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     protected void onRestart() {
         super.onRestart();
         loadSpinnerData();
-        loadTask();
+
     }
 }

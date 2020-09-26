@@ -74,7 +74,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         {
             if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
             {
-                holder.textViewProjectId.setText("Employee Name: "+employeeModel.getName());
+                holder.textViewProjectId.setText("Name: "+employeeModel.getName());
             }
         }
 
