@@ -85,6 +85,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
 
     public static ArrayList<String> projectIdList;
     public static ArrayList<String> employeeIdList;
+    public static ArrayList<String> employeeIdListName;
     public static ArrayList<String> projectIdName;
     public static List<EmployeeModel> employeeIdName;
 
@@ -111,6 +112,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         taskModelsList=new ArrayList<>();
         projectIdList=new ArrayList<>();
         employeeIdList=new ArrayList<>();
+        employeeIdListName=new ArrayList<>();
         projectIdName=new ArrayList<>();
         employeeIdName=new ArrayList<>();
 
@@ -159,8 +161,9 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
                        pName=jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("project_id")+")";
+                       projectIdList.add(jsonObjectReceive.getString("project_id"));
 
-                        projectIdList.add(pName);
+                        projectIdName.add(pName);
 
                         pName="";
 
@@ -199,6 +202,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                         employeeIdList.add(jsonObjectReceive.getString("employee_id"));
                         EmployeeModel employeeModel=new EmployeeModel(jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("name"));
                         employeeIdName.add(employeeModel);
+                        employeeIdListName.add(jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("employee_id")+")");
+
 
 
                     }
@@ -277,11 +282,11 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         });
 
 
-        arrayAdapterSpinnerProject=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,projectIdList);
+        arrayAdapterSpinnerProject=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,projectIdName);
         arrayAdapterSpinnerProject.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProject.setAdapter(arrayAdapterSpinnerProject);
 
-        arrayAdapterSpinnerEmployee=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,employeeIdList);
+        arrayAdapterSpinnerEmployee=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,employeeIdListName);
         arrayAdapterSpinnerEmployee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEmployee.setAdapter(arrayAdapterSpinnerEmployee);
 
@@ -289,14 +294,16 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         spinnerProject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                projectId= parent.getItemAtPosition(i).toString();
+                //projectId= parent.getItemAtPosition(i).toString();
+                projectId= employeeIdList.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                projectId= parent.getItemAtPosition(0).toString();
+                //projectId= parent.getItemAtPosition(0).toString();
+                projectId= employeeIdList.get(0).toString();
 
 
 
@@ -307,14 +314,16 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
         spinnerEmployee.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId= parent.getItemAtPosition(i).toString();
+//                eId= parent.getItemAtPosition(i).toString();
+                eId= employeeIdList.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId= parent.getItemAtPosition(0).toString();
+//                eId= parent.getItemAtPosition(0).toString();
+                eId= employeeIdList.get(0).toString();
 
 
 

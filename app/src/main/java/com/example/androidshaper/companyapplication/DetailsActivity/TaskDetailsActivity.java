@@ -35,6 +35,7 @@ import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToPr
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTasks;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToProject;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToTask;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -465,8 +466,16 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     private void loadData() {
 
+        for(EmployeeModel employeeModel:AdminToTasks.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
+            {
+                textViewEId.setText("Name: "+employeeModel.getName()+"("+taskModel.getEmployee_id()+")");
+            }
+        }
+
         textViewPId.setText("Project Id: "+taskModel.getProject_id());
-        textViewEId.setText("Employee Id: "+taskModel.getEmployee_id());
+        //textViewEId.setText("Employee Id: "+taskModel.getEmployee_id());
         textViewDescription.setText(" Description: "+taskModel.getDescription());
         textViewDuo.setText("Date: "+taskModel.getDue());
     }
