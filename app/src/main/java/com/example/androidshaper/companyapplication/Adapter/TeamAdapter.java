@@ -44,7 +44,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         TeamModel teamModel=teamModelList.get(position);
-        holder.textViewTeamId.setText("Team_Id"+teamModel.getTeam_id());
+        holder.textViewTeamId.setText("Team_Id: "+teamModel.getTeam_id());
         holder.textViewEmployeeId1.setText("e_id_1: " + teamModel.getE_id_1());
         holder.textViewEmployeeId2.setText("e_id_2: "+teamModel.getE_id_2());
         holder.textViewEmployeeId3.setText("e_id_3: "+teamModel.getE_id_3());
