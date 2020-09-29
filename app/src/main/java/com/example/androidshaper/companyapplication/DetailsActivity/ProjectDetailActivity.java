@@ -97,16 +97,16 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private void setProjectData(int position) {
 
 
-        textViewTeamId.setText(projectModel.getTeam_id());
-        textViewName.setText(projectModel.getName());
-        textViewStartDate.setText(projectModel.getStart_date());
-        textViewEndDate.setText(projectModel.getEnd_date());
-        textViewDescription.setText(projectModel.getDescription());
-        textViewAmount.setText(projectModel.getAmount());
-        textViewClient.setText(projectModel.getClient());
-        textViewPriority.setText(projectModel.getPriority());
-        textViewType.setText(projectModel.getType());
-        textViewLeader.setText(projectModel.getLeader());
+        textViewTeamId.setText("Team Id: "+projectModel.getTeam_id());
+        textViewName.setText("Project Name: "+projectModel.getName());
+        textViewStartDate.setText("Start Date: "+projectModel.getStart_date());
+        textViewEndDate.setText("End Date: "+projectModel.getEnd_date());
+        textViewDescription.setText("Description: "+projectModel.getDescription());
+        textViewAmount.setText("Amount: "+projectModel.getAmount());
+        textViewClient.setText("Client: "+projectModel.getClient());
+        textViewPriority.setText("Priority: "+projectModel.getPriority());
+        textViewType.setText("Type: "+projectModel.getType());
+        textViewLeader.setText("Leader: "+projectModel.getLeader());
     }
 
     @Override
@@ -267,16 +267,16 @@ public class ProjectDetailActivity extends AppCompatActivity {
                                         String jsonString=jsonObjectData.getString("data");
                                         JSONObject jsonObject=new JSONObject(jsonString);
 
-                                        textViewTeamId.setText(jsonObject.getString("team_id"));
-                                        textViewName.setText(jsonObject.getString("name"));
-                                        textViewStartDate.setText(jsonObject.getString("start_date"));
-                                        textViewEndDate.setText(jsonObject.getString("end_date"));
-                                        textViewDescription.setText(jsonObject.getString("description"));
-                                        textViewAmount.setText(jsonObject.getString("amount"));
-                                        textViewClient.setText(jsonObject.getString("client"));
-                                        textViewPriority.setText(jsonObject.getString("priority"));
-                                        textViewType.setText(jsonObject.getString("type"));
-                                        textViewLeader.setText(jsonObject.getString("leader"));
+                                        textViewTeamId.setText("Team Id: "+jsonObject.getString("team_id"));
+                                        textViewName.setText("Project Name: "+jsonObject.getString("name"));
+                                        textViewStartDate.setText("Start Date: "+jsonObject.getString("start_date"));
+                                        textViewEndDate.setText("End Date: "+jsonObject.getString("end_date"));
+                                        textViewDescription.setText("Description: "+jsonObject.getString("description"));
+                                        textViewAmount.setText("Amount: "+jsonObject.getString("amount"));
+                                        textViewClient.setText("Client"+jsonObject.getString("client"));
+                                        textViewPriority.setText("Priority: "+jsonObject.getString("priority"));
+                                        textViewType.setText("Type: "+jsonObject.getString("type"));
+                                        textViewLeader.setText("Leader: "+jsonObject.getString("leader"));
 
 
                                     } catch (JSONException e) {

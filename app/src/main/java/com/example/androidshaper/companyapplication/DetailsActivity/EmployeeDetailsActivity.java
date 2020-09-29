@@ -94,14 +94,14 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
         phone=employeeModel.getPhone();
         gender=employeeModel.getGender();
 
-        textViewName.setText(name);
-        textViewEmail.setText(email);
-        textViewPhone.setText(phone);
-        textViewGender.setText(gender);
-        textViewAddress.setText(employeeModel.getAddress());
-        textViewJoinDate.setText(employeeModel.getJoining_date());
-        textViewBirthDate.setText(employeeModel.getBirth_date());
-        textViewManager.setText(employeeModel.getManager());
+        textViewName.setText("Name: "+name);
+        textViewEmail.setText("Email: "+email);
+        textViewPhone.setText("Phone: "+phone);
+        textViewGender.setText("Gender: "+gender);
+        textViewAddress.setText("Address: "+employeeModel.getAddress());
+        textViewJoinDate.setText("Joining Date: "+employeeModel.getJoining_date());
+        textViewBirthDate.setText("Birth Date: "+employeeModel.getBirth_date());
+        textViewManager.setText("Manager: "+employeeModel.getManager());
     }
 
     @Override

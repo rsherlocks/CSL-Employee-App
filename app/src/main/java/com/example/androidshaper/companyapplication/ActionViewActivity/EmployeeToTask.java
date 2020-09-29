@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.Adapter.TaskAdapter;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.DetailsActivity.TaskDetailsActivity;
 import com.example.androidshaper.companyapplication.R;
@@ -43,6 +44,12 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
     public static ArrayList<String> projectIdList;
     public static ArrayList<String> employeeIdList;
 
+    public static String eName,pName;
+
+    public static ArrayList<String> employeeIdListName;
+    public static ArrayList<String> projectIdName;
+    public static List<EmployeeModel> employeeIdName;
+
     TaskAdapter.OnRecyclerItemClickInterface onRecyclerItemClickInterface;
 
 
@@ -59,6 +66,11 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
         taskModelsList=new ArrayList<>();
         projectIdList=new ArrayList<>();
         employeeIdList=new ArrayList<>();
+
+        employeeIdListName=new ArrayList<>();
+        projectIdName=new ArrayList<>();
+        employeeIdName=new ArrayList<>();
+
         recyclerViewEmployeeTask.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         requestQueue= Volley.newRequestQueue(this);
@@ -95,7 +107,14 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
+//                        projectIdList.add(jsonObjectReceive.getString("project_id"));
+
+                        pName=jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("project_id")+")";
                         projectIdList.add(jsonObjectReceive.getString("project_id"));
+
+                        projectIdName.add(pName);
+
+                        pName="";
 
 
                     }
@@ -128,7 +147,12 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
+//                        employeeIdList.add(jsonObjectReceive.getString("employee_id"));
+
                         employeeIdList.add(jsonObjectReceive.getString("employee_id"));
+                        EmployeeModel employeeModel=new EmployeeModel(jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("name"));
+                        employeeIdName.add(employeeModel);
+                        employeeIdListName.add(jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("employee_id")+")");
 
 
                     }
@@ -177,7 +201,7 @@ public class EmployeeToTask extends AppCompatActivity implements TaskAdapter.OnR
 
                     }
 
-                    taskAdapter=new TaskAdapter(onRecyclerItemClickInterface,taskModelsList);
+                    taskAdapter=new TaskAdapter(onRecyclerItemClickInterface,taskModelsList,employeeIdName);
                     taskAdapter.notifyDataSetChanged();
                     recyclerViewEmployeeTask.setAdapter(taskAdapter);
 

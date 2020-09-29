@@ -53,21 +53,21 @@ public class EmployeeAdapterView extends RecyclerView.Adapter<EmployeeAdapterVie
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date convertedDate = null;
 
-        try {
-            convertedDate = dateFormat.parse(joinDate);
-            String month = new SimpleDateFormat("MMM").format(convertedDate);
-            String day = new SimpleDateFormat("dd").format(convertedDate);
-            holder.textViewDate.setText(day);
-            holder.textViewMonth.setText(month);
-            Log.d("date", "onBindViewHolder: "+day+month);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            convertedDate = dateFormat.parse(joinDate);
+//            String month = new SimpleDateFormat("MMM").format(convertedDate);
+//            String day = new SimpleDateFormat("dd").format(convertedDate);
+//            holder.textViewDate.setText(day);
+//            Log.d("date", "onBindViewHolder: "+day+month);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
-
-
-        holder.textViewName.setText(employeeModel.getName());
-        holder.textViewManager.setText(employeeModel.getPhone());
+        holder.textViewDate.setText("Joining Date: "+employeeModel.getJoining_date());
+        holder.textViewPhone.setText("Phone: "+employeeModel.getPhone());
+        holder.textViewEmail.setText("Email: "+employeeModel.getEmail());
+        holder.textViewName.setText("Name: "+employeeModel.getName()+" ("+employeeModel.getEmployee_id()+")");
+        holder.textViewManager.setText("Manager: "+employeeModel.getManager());
         holder.viewCardColor.setBackgroundColor(getRandomColor());
 
 
@@ -126,14 +126,15 @@ public class EmployeeAdapterView extends RecyclerView.Adapter<EmployeeAdapterVie
 
     public class EmployeeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView textViewDate,textViewMonth,textViewName,textViewManager;
+        TextView textViewDate,textViewEmail,textViewPhone,textViewName,textViewManager;
         View viewCardColor;
         OnRecyclerItemClickInterface onRecyclerItemClickInterface;
 
         public EmployeeViewHolder(@NonNull View itemView,OnRecyclerItemClickInterface interFace) {
             super(itemView);
             textViewDate=itemView.findViewById(R.id.textViewJoinDate);
-            textViewMonth=itemView.findViewById(R.id.textViewJoinMonth);
+            textViewEmail=itemView.findViewById(R.id.textViewEmployeeEmail);
+            textViewPhone=itemView.findViewById(R.id.textViewEmployeePhone);
             textViewName=itemView.findViewById(R.id.textViewEmployeeName);
             textViewManager=itemView.findViewById(R.id.textViewEmployeeManager);
             viewCardColor=itemView.findViewById(R.id.viewCardColor);

@@ -466,11 +466,25 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     private void loadData() {
 
-        for(EmployeeModel employeeModel:AdminToTasks.employeeIdName)
+        if (position==1)
         {
-            if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
+            for(EmployeeModel employeeModel:EmployeeToTask.employeeIdName)
             {
-                textViewEId.setText("Name: "+employeeModel.getName()+"("+taskModel.getEmployee_id()+")");
+                if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
+                {
+                    textViewEId.setText("Name: "+employeeModel.getName()+"("+taskModel.getEmployee_id()+")");
+                }
+            }
+        }
+
+        else
+        {
+            for(EmployeeModel employeeModel:AdminToTasks.employeeIdName)
+            {
+                if (employeeModel.getEmployee_id()==taskModel.getEmployee_id())
+                {
+                    textViewEId.setText("Name: "+employeeModel.getName()+"("+taskModel.getEmployee_id()+")");
+                }
             }
         }
 

@@ -126,8 +126,10 @@ public class AdminToEmployee extends AppCompatActivity implements EmployeeAdapte
                                 jsonObjectReceive.getString("joining_date"),jsonObjectReceive.getString("birth_date"),jsonObjectReceive.getString("manager"));
 
                         modelList.add(employeeModel);
+                        Log.d("number", "onResponse: "+i);
 
                     }
+
                     employeeAdapterView=new EmployeeAdapterView(onRecyclerItemClickInterface,modelList);
                     employeeAdapterView.notifyDataSetChanged();
                     recyclerViewEmployee.setAdapter(employeeAdapterView);

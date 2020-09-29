@@ -41,6 +41,7 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         buttonTask.setOnClickListener(this);
         buttonProject.setOnClickListener(this);
         buttonTeam.setOnClickListener(this);
+        buttonTeam.setVisibility(View.INVISIBLE);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
