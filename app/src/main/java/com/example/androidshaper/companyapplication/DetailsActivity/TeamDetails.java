@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTeam;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.TeamModel;
 import com.example.androidshaper.companyapplication.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -46,6 +47,8 @@ public class TeamDetails extends AppCompatActivity {
     int position,check=0;
 
     Toolbar toolbar;
+
+    ArrayList<String> employeeId;
 
     RequestQueue requestQueue;
     String fetchUrl="https://benot.xyz/api/api/teams/";
@@ -84,6 +87,7 @@ public class TeamDetails extends AppCompatActivity {
         check=getIntent().getExtras().getInt("check");
         teamModel= AdminToTeam.teamModelList.get(position);
         fetchUrl=fetchUrl+teamModel.getTeam_id().toString().trim();
+        employeeId=AdminToTeam.employeeId;
         requestQueue= Volley.newRequestQueue(this);
 
 
@@ -210,14 +214,14 @@ public class TeamDetails extends AppCompatActivity {
         spinnerEmployee1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId1= parent.getItemAtPosition(i).toString();
+                eId1= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId1= parent.getItemAtPosition(0).toString();
+                eId1= employeeId.get(0).toString();
 
 
 
@@ -228,14 +232,14 @@ public class TeamDetails extends AppCompatActivity {
         spinnerEmployee2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId2= parent.getItemAtPosition(i).toString();
+                eId2= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId2= parent.getItemAtPosition(0).toString();
+                eId2= employeeId.get(0).toString();
 
 
 
@@ -244,14 +248,14 @@ public class TeamDetails extends AppCompatActivity {
         spinnerEmployee3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId3= parent.getItemAtPosition(i).toString();
+                eId3= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId3= parent.getItemAtPosition(0).toString();
+                eId3= employeeId.get(0).toString();
 
 
 
@@ -260,14 +264,14 @@ public class TeamDetails extends AppCompatActivity {
         spinnerEmployee4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId4= parent.getItemAtPosition(i).toString();
+                eId4= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId4= parent.getItemAtPosition(0).toString();
+                eId4= employeeId.get(0).toString();
 
 
 
@@ -276,14 +280,14 @@ public class TeamDetails extends AppCompatActivity {
         spinnerEmployee5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId5= parent.getItemAtPosition(i).toString();
+                eId5= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId5= parent.getItemAtPosition(0).toString();
+                eId5= employeeId.get(0).toString();
 
 
 
@@ -314,12 +318,51 @@ public class TeamDetails extends AppCompatActivity {
                                     jsonObjectData = new JSONObject(response);
                                     String jsonString=jsonObjectData.getString("data");
                                     JSONObject jsonObject=new JSONObject(jsonString);
+
                                     textViewTeamId.setText("Project Id: "+jsonObject.getString("team_id"));
-                                    textViewEId1.setText("Employee Id1: "+jsonObject.getString("e_id_1"));
-                                    textViewEId2.setText("Employee Id2: "+jsonObject.getString("e_id_2"));
-                                    textViewEId3.setText("Employee Id3: "+jsonObject.getString("e_id_3"));
-                                    textViewEId4.setText("Employee Id4: "+jsonObject.getString("e_id_4"));
-                                    textViewEId5.setText("Employee Id5: "+jsonObject.getString("e_id_5"));
+
+                                    for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+                                    {
+                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_1"))
+                                        {
+
+                                            textViewEId1.setText("e_id_1: " +employeeModel.getName()+"("+ jsonObject.getString("e_id_1")+")");
+                                        }
+                                    }
+
+                                    for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+                                    {
+                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_2"))
+                                        {
+
+                                            textViewEId2.setText("e_id_2: " +employeeModel.getName()+"("+ jsonObject.getString("e_id_2")+")");
+                                        }
+                                    }
+                                    for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+                                    {
+                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_3"))
+                                        {
+
+                                            textViewEId3.setText("e_id_3: " +employeeModel.getName()+"("+jsonObject.getString("e_id_3")+")");
+                                        }
+                                    }
+                                    for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+                                    {
+                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_4"))
+                                        {
+
+                                            textViewEId4.setText("e_id_4: " +employeeModel.getName()+"("+jsonObject.getString("e_id_4")+")");
+                                        }
+                                    }
+                                    for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+                                    {
+                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_5"))
+                                        {
+
+                                            textViewEId5.setText("e_id_5: " +employeeModel.getName()+"("+jsonObject.getString("e_id_5")+")");
+                                        }
+                                    }
+
 
 
 
@@ -358,11 +401,13 @@ public class TeamDetails extends AppCompatActivity {
 
                 requestQueue.add(stringRequestAdd);
 
+                Toast.makeText(getApplicationContext(),"Update Data",Toast.LENGTH_SHORT).show();
+
 
 
 
                 bottomSheetDialog.dismiss();
-                loadData();
+                finish();
 
 
 
@@ -381,11 +426,88 @@ public class TeamDetails extends AppCompatActivity {
     }
 
     private void loadData() {
+//        for(EmployeeModel employeeModel:AdminToTeam.employeeIdName)
+//        {
+//            if (employeeModel.getEmployee_id()==teamModel.getE_id_1())
+//            {
+//
+//                textViewEId1.setText("e_id_1: " +employeeModel.getName()+"("+ teamModel.getE_id_1()+")");
+//            }
+//            else if (employeeModel.getEmployee_id()==teamModel.getE_id_2())
+//            {
+//
+//                textViewEId2.setText("e_id_2: " +employeeModel.getName()+"("+ teamModel.getE_id_2()+")");
+//            }
+//            else if (employeeModel.getEmployee_id()==teamModel.getE_id_3())
+//            {
+//
+//                textViewEId3.setText("e_id_3: " +employeeModel.getName()+"("+ teamModel.getE_id_3()+")");
+//            }
+//            else if (employeeModel.getEmployee_id()==teamModel.getE_id_4())
+//            {
+//
+//                textViewEId4.setText("e_id_4: " +employeeModel.getName()+"("+ teamModel.getE_id_4()+")");
+//            }
+//            else if (employeeModel.getEmployee_id()==teamModel.getE_id_5())
+//            {
+//
+//                textViewEId5.setText("e_id_5: " +employeeModel.getName()+"("+ teamModel.getE_id_5()+")");
+//            }
+////            else{
+////         textViewEId1.setText("Employee Id1: "+teamModel.getE_id_1());
+////        textViewEId2.setText("Employee Id2: "+teamModel.getE_id_2());
+////        textViewEId3.setText("Employee Id3: "+teamModel.getE_id_3());
+////        textViewEId4.setText("Employee Id1: "+teamModel.getE_id_4());
+////        textViewEId5.setText("Employee Id1: "+teamModel.getE_id_5());
+////
+////            }
+//        }
+        for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==teamModel.getE_id_1())
+            {
+
+                textViewEId1.setText("e_id_1: " +employeeModel.getName()+"("+ teamModel.getE_id_1()+")");
+            }
+        }
+        for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==teamModel.getE_id_2())
+            {
+
+                textViewEId2.setText("e_id_2: " +employeeModel.getName()+"("+ teamModel.getE_id_2()+")");
+            }
+        }
+        for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==teamModel.getE_id_3())
+            {
+
+                textViewEId3.setText("e_id_3: " +employeeModel.getName()+"("+ teamModel.getE_id_3()+")");
+            }
+        }
+        for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==teamModel.getE_id_4())
+            {
+
+                textViewEId4.setText("e_id_4: " +employeeModel.getName()+"("+ teamModel.getE_id_4()+")");
+            }
+        }
+        for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
+        {
+            if (employeeModel.getEmployee_id()==teamModel.getE_id_5())
+            {
+
+                textViewEId5.setText("e_id_5: " +employeeModel.getName()+"("+ teamModel.getE_id_5()+")");
+            }
+        }
         textViewTeamId.setText("Team Id: "+teamModel.getTeam_id());
-        textViewEId1.setText("Employee Id1: "+teamModel.getE_id_1());
-        textViewEId2.setText("Employee Id2: "+teamModel.getE_id_2());
-        textViewEId3.setText("Employee Id3: "+teamModel.getE_id_3());
-        textViewEId4.setText("Employee Id1: "+teamModel.getE_id_4());
-        textViewEId5.setText("Employee Id1: "+teamModel.getE_id_5());
+//        textViewEId1.setText("Employee Id1: "+teamModel.getE_id_1());
+//        textViewEId2.setText("Employee Id2: "+teamModel.getE_id_2());
+//        textViewEId3.setText("Employee Id3: "+teamModel.getE_id_3());
+//        textViewEId4.setText("Employee Id1: "+teamModel.getE_id_4());
+//        textViewEId5.setText("Employee Id1: "+teamModel.getE_id_5());
+
     }
 }

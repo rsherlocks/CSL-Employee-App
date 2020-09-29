@@ -29,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidshaper.companyapplication.Adapter.TaskAdapter;
 import com.example.androidshaper.companyapplication.Adapter.TeamAdapter;
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.DataModel.TeamModel;
 import com.example.androidshaper.companyapplication.DetailsActivity.TaskDetailsActivity;
@@ -67,6 +68,8 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
 
 
     public static ArrayList<String> employeeIdList;
+    public static ArrayList<String> employeeId;
+    public static List<EmployeeModel> employeeIdName;
 
     String eId1,eId2,eId3,eId4,eId5;
     int check=0;
@@ -78,6 +81,8 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         recyclerViewTeam=findViewById(R.id.recyclerViewAdminTeam);
         teamModelList=new ArrayList<>();
         employeeIdList=new ArrayList<>();
+        employeeIdName=new ArrayList<>();
+        employeeId=new ArrayList<>();
         onRecyclerItemClickInterface=AdminToTeam.this;
         requestQueue= Volley.newRequestQueue(this);
 
@@ -129,7 +134,10 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
                     {
                         JSONObject jsonObjectReceive=jsonArray.getJSONObject(i);
 
-                        employeeIdList.add(jsonObjectReceive.getString("employee_id"));
+                        employeeIdList.add(jsonObjectReceive.getString("name")+"("+jsonObjectReceive.getString("employee_id")+")");
+                        EmployeeModel employeeModel=new EmployeeModel(jsonObjectReceive.getString("employee_id"),jsonObjectReceive.getString("name"));
+                        employeeIdName.add(employeeModel);
+                        employeeId.add(jsonObjectReceive.getString("employee_id"));
 
 
                     }
@@ -173,8 +181,9 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
                         teamModelList.add(teamModel);
 
                     }
+                    Log.d("array", "onResponse: "+employeeIdName.toString());
 
-                    teamAdapter=new TeamAdapter(teamModelList,onRecyclerItemClickInterface);
+                    teamAdapter=new TeamAdapter(teamModelList,employeeIdName,onRecyclerItemClickInterface);
                     teamAdapter.notifyDataSetChanged();
                     recyclerViewTeam.setAdapter(teamAdapter);
 
@@ -231,14 +240,14 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         spinnerEmployee1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId1= parent.getItemAtPosition(i).toString();
+                eId1= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId1= parent.getItemAtPosition(0).toString();
+                eId1= employeeId.get(0).toString();
 
 
 
@@ -249,14 +258,14 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         spinnerEmployee2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId2= parent.getItemAtPosition(i).toString();
+                eId2= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId2= parent.getItemAtPosition(0).toString();
+                eId2= employeeId.get(0).toString();
 
 
 
@@ -265,14 +274,14 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         spinnerEmployee3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId3= parent.getItemAtPosition(i).toString();
+                eId3= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId3= parent.getItemAtPosition(0).toString();
+                eId3= employeeId.get(0).toString();
 
 
 
@@ -281,14 +290,14 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         spinnerEmployee4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId4= parent.getItemAtPosition(i).toString();
+                eId4= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId4= parent.getItemAtPosition(0).toString();
+                eId4= employeeId.get(0).toString();
 
 
 
@@ -297,14 +306,14 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
         spinnerEmployee5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                eId5= parent.getItemAtPosition(i).toString();
+                eId5= employeeId.get(i).toString();
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-                eId5= parent.getItemAtPosition(0).toString();
+                eId5= employeeId.get(0).toString();
 
 
 
@@ -337,8 +346,6 @@ public class AdminToTeam extends AppCompatActivity implements TeamAdapter.OnRecy
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-                                    loadData();
-
 
 
 

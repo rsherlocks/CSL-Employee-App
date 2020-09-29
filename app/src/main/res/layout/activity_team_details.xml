@@ -10,7 +10,7 @@
     tools:context=".DetailsActivity.TeamDetails">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarTeam"
-        app:title="Employee Profile"
+        app:title="Team"
         app:menu="@menu/menu_toolar"
         android:layout_width="match_parent"
         android:background="#FAF1F1"

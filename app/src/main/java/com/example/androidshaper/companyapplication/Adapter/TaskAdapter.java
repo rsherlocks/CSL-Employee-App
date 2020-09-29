@@ -155,7 +155,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 String searchFilter=charSequence.toString().toLowerCase().trim();
                 for (TaskModel taskModel:taskModelListSearch)
                 {
-                    if (taskModel.getProject_id().toLowerCase().contains(searchFilter))
+                    if (taskModel.getTaks_id().toLowerCase().contains(searchFilter))
                     {
                         modelListFilter.add(taskModel);
 

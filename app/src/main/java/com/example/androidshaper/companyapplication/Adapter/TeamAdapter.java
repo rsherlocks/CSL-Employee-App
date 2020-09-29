@@ -8,6 +8,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.example.androidshaper.companyapplication.DataModel.EmployeeModel;
 import com.example.androidshaper.companyapplication.DataModel.TaskModel;
 import com.example.androidshaper.companyapplication.DataModel.TeamModel;
 import com.example.androidshaper.companyapplication.R;
@@ -24,7 +25,14 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     List<TeamModel> teamModelList;
     List<TeamModel> teamModelListSearch;
+    List<EmployeeModel> employeeModelList;
     OnRecyclerItemClickInterface itemClickInterface;
+
+    public TeamAdapter(List<TeamModel> teamModelList, List<EmployeeModel> employeeModelList, OnRecyclerItemClickInterface itemClickInterface) {
+        this.teamModelList = teamModelList;
+        this.employeeModelList = employeeModelList;
+        this.itemClickInterface = itemClickInterface;
+    }
 
     public TeamAdapter(List<TeamModel> teamModelList, OnRecyclerItemClickInterface itemClickInterface) {
         this.teamModelList = teamModelList;
@@ -44,13 +52,52 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         TeamModel teamModel=teamModelList.get(position);
+
+        for(EmployeeModel employeeModel:employeeModelList)
+        {
+            if (teamModel.getE_id_1()==employeeModel.getEmployee_id()) {
+                holder.textViewEmployeeId1.setText("e_id_1: " +employeeModel.getName()+"("+ teamModel.getE_id_1()+")");
+            }
+
+            }
+        for(EmployeeModel employeeModel:employeeModelList)
+        {
+            if (teamModel.getE_id_2()==employeeModel.getEmployee_id()) {
+                holder.textViewEmployeeId2.setText("e_id_2: " +employeeModel.getName()+"("+ teamModel.getE_id_2()+")");
+            }
+
+        }
+        for(EmployeeModel employeeModel:employeeModelList)
+        {
+            if (teamModel.getE_id_3()==employeeModel.getEmployee_id()) {
+                holder.textViewEmployeeId3.setText("e_id_3: " +employeeModel.getName()+"("+ teamModel.getE_id_3()+")");
+            }
+
+        }
+        for(EmployeeModel employeeModel:employeeModelList)
+        {
+            if (teamModel.getE_id_4()==employeeModel.getEmployee_id()) {
+                holder.textViewEmployeeId4.setText("e_id_4: " +employeeModel.getName()+"("+ teamModel.getE_id_4()+")");
+            }
+
+        }
+        for(EmployeeModel employeeModel:employeeModelList)
+        {
+            if (teamModel.getE_id_5()==employeeModel.getEmployee_id()) {
+                holder.textViewEmployeeId5.setText("e_id_5: " +employeeModel.getName()+"("+ teamModel.getE_id_5()+")");
+            }
+
+        }
+
         holder.textViewTeamId.setText("Team_Id: "+teamModel.getTeam_id());
-        holder.textViewEmployeeId1.setText("e_id_1: " + teamModel.getE_id_1());
-        holder.textViewEmployeeId2.setText("e_id_2: "+teamModel.getE_id_2());
-        holder.textViewEmployeeId3.setText("e_id_3: "+teamModel.getE_id_3());
-        holder.textViewEmployeeId4.setText("e_id_4: "+teamModel.getE_id_4());
-        holder.textViewEmployeeId5.setText("e_id_5: "+teamModel.getE_id_5());
+//        holder.textViewEmployeeId1.setText("e_id_1: "+teamModel.getE_id_1());
+//        holder.textViewEmployeeId2.setText("e_id_2: "+teamModel.getE_id_2());
+//        holder.textViewEmployeeId3.setText("e_id_3: "+teamModel.getE_id_3());
+//        holder.textViewEmployeeId4.setText("e_id_4: "+teamModel.getE_id_4());
+//        holder.textViewEmployeeId5.setText("e_id_5: "+teamModel.getE_id_5());
+
         holder.viewCardColor.setBackgroundColor(getRandomColor());
+
 
     }
     public int getRandomColor(){
