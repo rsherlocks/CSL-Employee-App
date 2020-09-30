@@ -40,9 +40,11 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
 
         AttendancesModel attendancesModel=attendancesModelList.get(position);
 
-        holder.textViewEmployeeId.setText("Employee Id: "+attendancesModel.getEmployee_id());
+
+        holder.textViewAttendanceId.setText("Attendance Id: "+attendancesModel.getAttendance_id());
+        holder.textViewAttendanceEmployeeId.setText("Employee Id: "+attendancesModel.getEmployee_id());
         holder.textViewCheckIn.setText("Check In: "+attendancesModel.getCheck_in());
-        holder.textViewCheckOut.setText("Check In: "+attendancesModel.getCheck_out());
+        holder.textViewCheckOut.setText("Check Out: "+attendancesModel.getCheck_out());
 
         holder.viewCardColor.setBackgroundColor(getRandomColor());
 
@@ -62,13 +64,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.At
     }
 
     public class AttendanceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView textViewEmployeeId,textViewName,textViewCheckIn,textViewCheckOut;
+        TextView textViewAttendanceId,textViewAttendanceEmployeeId,textViewCheckIn,textViewCheckOut;
         View viewCardColor;
        OnRecyclerItemClickInterface onRecyclerItemClickInterface;
 
         public AttendanceViewHolder(@NonNull View itemView,OnRecyclerItemClickInterface interFace) {
             super(itemView);
-            textViewEmployeeId=itemView.findViewById(R.id.textViewAttendanceEmployeeId);
+            textViewAttendanceEmployeeId=itemView.findViewById(R.id.textViewAttendanceEmployeeId);
+            textViewAttendanceId=itemView.findViewById(R.id.textViewAttendanceId);
             textViewCheckIn=itemView.findViewById(R.id.textViewAttendanceCheckIn);
             textViewCheckOut=itemView.findViewById(R.id.textViewAttendanceCheckOut);
             viewCardColor=itemView.findViewById(R.id.viewCardColor);

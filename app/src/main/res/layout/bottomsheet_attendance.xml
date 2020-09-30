@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:id="@+id/bottomSheetTask"
+    android:id="@+id/bottomSheetAttendanceCheckIn"
     android:padding="20dp"
     android:layout_gravity="bottom"
     android:fitsSystemWindows="false"
@@ -20,10 +20,23 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
+            <TextView
+                android:textSize="25dp"
+                android:text="Check In"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:textSize="21dp"
-                android:text="Project"
+                android:text="Employee Id"
                 android:gravity="top"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -37,38 +50,10 @@
                 android:layout_width="match_parent"
                 android:layout_centerInParent="true"
                 android:layout_margin="8dp"
-               android:background="@drawable/round_edittext"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:id="@+id/projectIdSpinner"
-                    android:padding="10dp"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:textSize="21dp"
-                android:text="Employee Id"
-                android:gravity="top"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="5dp"
-
-                android:drawablePadding="5dp"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_margin="8dp"
-                android:layout_centerInParent="true"
                 android:background="@drawable/round_edittext"
                 android:layout_height="wrap_content">
                 <Spinner
-                    android:id="@+id/employeeIdSpinner"
+                    android:id="@+id/attendanceEmployeeIdSpinner"
                     android:padding="10dp"
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"
@@ -78,23 +63,6 @@
 
 
 
-
-            <EditText
-                android:id="@+id/editTextTaskDescription"
-                android:textSize="21dp"
-                android:hint="Project description"
-                android:gravity="top"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:drawablePadding="5dp"
-
-                android:background="@drawable/round_edittext"
-                android:focusableInTouchMode="true"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"/>
 
             <RelativeLayout
                 android:layout_marginLeft="8dp"
@@ -105,13 +73,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/editTextTaskDue"
+                    android:id="@+id/editTextAttendanceDate"
                     android:textSize="21dp"
-                    android:hint="12-5-2020"
+                    android:hint="CheckIn Date: 12-5-2020"
                     android:gravity="top"
                     android:layout_alignParentLeft="true"
-
-
 
                     android:background="@drawable/round_edittext"
                     android:focusableInTouchMode="true"
@@ -119,7 +85,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"/>
                 <ImageView
-                    android:id="@+id/dateTaskImageView"
+                    android:id="@+id/attendanceDateImageView"
                     android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:background="@drawable/ic_baseline_date_range_24_red"
@@ -128,16 +94,46 @@
             </RelativeLayout>
 
 
+            <RelativeLayout
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editTextAttendanceTime"
+                    android:textSize="21dp"
+                    android:hint="CheckIn Time: 12-12-12"
+                    android:gravity="top"
+                    android:layout_alignParentLeft="true"
+
+                    android:background="@drawable/round_edittext"
+                    android:focusableInTouchMode="true"
+                    android:padding="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/attendanceTimeImageView"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:background="@drawable/ic_baseline_access_time_24_red"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </RelativeLayout>
+
+
 
             <Button
-                android:id="@+id/addTaskButton"
+                android:id="@+id/addCheckInButton"
                 android:gravity="center_vertical"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="30dp"
                 android:layout_height="wrap_content"
-                android:text="Add Task"
+                android:text="Add Check In"
 
 
                 />

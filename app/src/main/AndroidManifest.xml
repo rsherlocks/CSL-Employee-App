@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DetailsActivity.AttendanceDetailsActivity"></activity>
         <activity android:name=".ActionViewActivity.EmployeeToTeam" />
         <activity android:name=".ActionViewActivity.EmployeeToProject" />
         <activity android:name=".SignUi.AdminLogin" />

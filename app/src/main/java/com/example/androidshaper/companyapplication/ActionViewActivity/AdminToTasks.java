@@ -148,8 +148,8 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
     }
 
     private void loadSpinnerData() {
-        projectIdList.clear();
-        employeeIdList.clear();
+        projectIdName.clear();
+        employeeIdListName.clear();
         final StringRequest stringRequestProject=new StringRequest(Request.Method.GET,fetchProject, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -339,13 +339,7 @@ public class AdminToTasks extends AppCompatActivity implements TaskAdapter.OnRec
                 description=editTextDescription.getText().toString();
                 dateText=editTextDuo.getText().toString();
 
-                SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
-                try {
-                    Date d = (Date) f.parse(dateText);
-                    milliseconds[0] = d.getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+
 
 
                 if (!description.isEmpty()&&!dateText.isEmpty())

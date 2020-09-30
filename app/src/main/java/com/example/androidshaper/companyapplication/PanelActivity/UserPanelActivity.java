@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToAttendance;
 import com.example.androidshaper.companyapplication.ActionViewActivity.AdminToTeam;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToProject;
 import com.example.androidshaper.companyapplication.ActionViewActivity.EmployeeToTask;
@@ -41,10 +42,9 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         buttonTask.setOnClickListener(this);
         buttonProject.setOnClickListener(this);
         buttonTeam.setOnClickListener(this);
+        buttonAttendance.setOnClickListener(this);
         buttonTeam.setVisibility(View.INVISIBLE);
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
@@ -94,6 +94,13 @@ public class UserPanelActivity extends AppCompatActivity implements View.OnClick
         else if (v.getId()==R.id.teamUserButton)
         {
             Intent intent=new Intent(this, AdminToTeam.class);
+            intent.putExtra("check",1);
+            startActivity(intent);
+
+        }
+        else if (v.getId()==R.id.attendanceUserButton)
+        {
+            Intent intent=new Intent(this, AdminToAttendance.class);
             intent.putExtra("check",1);
             startActivity(intent);
 
