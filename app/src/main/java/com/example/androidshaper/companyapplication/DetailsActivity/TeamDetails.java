@@ -321,18 +321,20 @@ public class TeamDetails extends AppCompatActivity {
 
                                     textViewTeamId.setText("Project Id: "+jsonObject.getString("team_id"));
 
+                                    String eId1=jsonObject.getString("e_id_1").toString();
+
                                     for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
                                     {
-                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_1"))
+                                        if (employeeModel.getEmployee_id().equals(eId1))
                                         {
 
-                                            textViewEId1.setText("e_id_1: " +employeeModel.getName()+"("+ jsonObject.getString("e_id_1")+")");
+                                            textViewEId1.setText("e_id_1: " +employeeModel.getName()+"("+eId1+")");
                                         }
                                     }
 
                                     for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
                                     {
-                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_2"))
+                                        if (employeeModel.getEmployee_id().equals(jsonObject.getString("e_id_2")))
                                         {
 
                                             textViewEId2.setText("e_id_2: " +employeeModel.getName()+"("+ jsonObject.getString("e_id_2")+")");
@@ -340,7 +342,7 @@ public class TeamDetails extends AppCompatActivity {
                                     }
                                     for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
                                     {
-                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_3"))
+                                        if (employeeModel.getEmployee_id().equals(jsonObject.getString("e_id_3")))
                                         {
 
                                             textViewEId3.setText("e_id_3: " +employeeModel.getName()+"("+jsonObject.getString("e_id_3")+")");
@@ -348,7 +350,7 @@ public class TeamDetails extends AppCompatActivity {
                                     }
                                     for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
                                     {
-                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_4"))
+                                        if (employeeModel.getEmployee_id().equals(jsonObject.getString("e_id_4")))
                                         {
 
                                             textViewEId4.setText("e_id_4: " +employeeModel.getName()+"("+jsonObject.getString("e_id_4")+")");
@@ -356,7 +358,7 @@ public class TeamDetails extends AppCompatActivity {
                                     }
                                     for (EmployeeModel employeeModel : AdminToTeam.employeeIdName)
                                     {
-                                        if (employeeModel.getEmployee_id()==jsonObject.getString("e_id_5"))
+                                        if (employeeModel.getEmployee_id().equals(jsonObject.getString("e_id_5")))
                                         {
 
                                             textViewEId5.setText("e_id_5: " +employeeModel.getName()+"("+jsonObject.getString("e_id_5")+")");
@@ -407,7 +409,7 @@ public class TeamDetails extends AppCompatActivity {
 
 
                 bottomSheetDialog.dismiss();
-                finish();
+                //finish();
 
 
 
