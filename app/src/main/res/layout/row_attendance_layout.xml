@@ -47,13 +47,12 @@ android:layout_height="100dp">
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="Employee_Id: 1"
+
                 android:textColor="#1E1E1E"
                 android:textSize="13sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/textViewAttendanceEmployeeId"
-                android:text="Name: Jubayer Vai"
                 android:textSize="11sp"
                 android:singleLine="true"
                 android:maxLines="1"

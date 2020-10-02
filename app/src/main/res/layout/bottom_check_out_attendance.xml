@@ -22,7 +22,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:textSize="25dp"
-                android:text="Check In"
+                android:text="Check Out"
                 android:gravity="center"
                 android:textColor="#000"
                 android:textStyle="bold"
@@ -34,34 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:textSize="21dp"
-                android:text="Employee Id"
-                android:id="@+id/textAttendance"
-                android:gravity="top"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:drawablePadding="5dp"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:id="@+id/layoutAttendance"
-                android:layout_width="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_margin="8dp"
-                android:background="@drawable/round_edittext"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:id="@+id/attendanceEmployeeIdSpinner"
-                    android:padding="10dp"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"/>
-
-            </LinearLayout>
 
 
 
@@ -135,7 +107,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="30dp"
                 android:layout_height="wrap_content"
-                android:text="Add Check In"
+                android:text="Add Check Out"
 
 
                 />

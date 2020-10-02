@@ -86,7 +86,7 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
                     @Override
                     public void onResponse(String response) {
 
-                        String checkMail,checkPassword;
+                        String checkMail,checkPassword,eId;
                         int m=0;
 
                         JSONObject jsonObject= null;
@@ -101,14 +101,21 @@ public class UserLogin extends AppCompatActivity implements View.OnClickListener
 
                                 checkPassword=jsonObjectReceive.getString("password").toString().trim();
 
+
+
                                 if (mail.equals(checkMail) && password.equals(checkPassword))
                                 {
                                     m++;
+                                    eId=jsonObjectReceive.getString("employee_id").toString().trim();;
                                     SharedPreferences sharedPreferences=getSharedPreferences("userLogin", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor= sharedPreferences.edit();
                                     editor.putString("status","on");
+                                    editor.putString("user","employee");
+                                    editor.putString("eid",eId);
+
                                     editor.commit();
                                     Intent intent=new Intent(UserLogin.this, UserPanelActivity.class);
+
                                     startActivity(intent);
                                     finish();
 

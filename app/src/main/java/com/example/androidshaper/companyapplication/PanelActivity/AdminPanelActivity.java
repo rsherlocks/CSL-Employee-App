@@ -102,6 +102,7 @@ public class AdminPanelActivity extends AppCompatActivity implements View.OnClic
         else if (v.getId()==R.id.attendanceButton)
         {
             Intent intent=new Intent(this, AdminToAttendance.class);
+            intent.putExtra("check","admin");
             startActivity(intent);
         }
 
